@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}Receive Your Confirmations{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<header class="tarot-bg">
+    <div class="container text-center py-4">
+        <!-- Header -->
+        <h1 class="night-mode tarot-header">
+            {% if status == "register" %}
+            Hello <span class="text-warning">Friend</span>!
+            {% elif status == "login_success" %}
+            Welcome <span class="text-warning">{{ username }}</span> !
+            {% else %}
+            Receive Your Confirmations
+            {% endif %}
+        </h1>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        {% if category == 'success' %}
+        <p class="alert alert-success">{{ message }}</p>
+        {% else %}
+        <p class="alert alert-danger">{{ message }}</p>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <div class="col-lg-6 mx-auto">
+            <!-- Instructions -->
+            {% if status == "register" %}
+            <h5 class="night-mode py-4">Please fill out the form below. In just a few clicks, you'll start your journey
+                with us!</h5>
+            {% else %}
+            <h5 class="night-mode py-4 tarot-instructions ">
+                For three rounds, you will be presented with three cards, from which you will pick the
+                one that calls out to you the most. After selecting your third card, we will divine the message
+                you were meant to hear today.</h5>
+            {% endif %}
+
+            <!-- Register Form -->
+            {% if status == "register" %}
+            <form class="container night-mode pt-2" method="post">
+                {{ form.csrf_token }}
+                <div class="container my-2">
+                    {{ wtf.form_field(form.username) }}
+                </div>
+                <div class="container my-2">
+                    {{ wtf.form_field(form.email) }}
+                </div>
+                <div class="container my-2">
+                    {{ wtf.form_field(form.password) }}
+                    <!-- Show Password -->
+                    <div class="mt-2 text-start">
+                        <input type="checkbox" onclick="showPassword()" class="form-check-input" id="checkbox">
+                        <label for="checkbox" class="form-check-label ps-2">Show Password</label>
+                    </div>
+
+                    <script>
+                            function showPassword() {
+                                var password = document.getElementById("password");
+                                if (password.type === "password") {
+                                    password.type = "text";
+                                    }
+                                else {
+                                    password.type = "password";
+                                    }
+                            }
+
+
+
+
+                    </script>
+
+                </div>
+                <div class="row mx-auto p-3">
+                    <input class="col btn btn-warning" type="submit" name="action" value="Sign Me Up!">
+                </div>
+                <a href="{{url_for('tarot_start')}}" class="col-4 btn btn-light my-2">
+                    Go Back
+                </a>
+            </form>
+            {% endif %}
+
+            <!-- Login Form -->
+            {% if request.method == "GET" or status == "try_again" %}
+            <div class="container">
+                <!-- Header -->
+                <h5 class="night-mode tarot-instructions py-2">But first... please confirm that you are one of us:</h5>
+                <!-- Form -->
+                <form class="container night-mode pt-2" method="post">
+                    {{ form.csrf_token }}
+                    <div class="container my-2">
+                        {{ wtf.form_field(form.username) }}
+                    </div>
+                    <div class="container my-2">
+                        {{ wtf.form_field(form.password) }}
+                        <!-- Show Password -->
+                        <div class="mt-2 text-start">
+                            <input type="checkbox" onclick="showPassword()" class="form-check-input" id="checkbox">
+                            <label for="checkbox" class="form-check-label ps-2">Show Password</label>
+                        </div>
+                        <script>
+                            function showPassword() {
+                                var password = document.getElementById("password");
+                                if (password.type === "password") {
+                                    password.type = "text";
+                                    }
+                                else {
+                                    password.type = "password";
+                                    }
+                            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </script>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="row justify-content-between p-4">
+                        <input class="col-5 btn btn-warning" type="submit" name="action" value="Login">
+                        <input class="col-5 btn btn-light" type="submit" name="action" value="Register">
+                    </div>
+                </form>
+                <!-- Forgot Password Link -->
+                <a type="submit" class="mb-2" href="{{ url_for('reset_password_request') }}">
+                    Forgot password? Click here to reset
+                </a>
+            </div>
+
+            {% endif %}
+        </div>
+
+        <!-- Login Successful - Show Tarot Cards -->
+        {% if status == "login_success" %}
+        <div class="row col-lg-10 mx-auto my-4 px-4">
+            {% for card in deal_cards %}
+            <div class="col d-flex justify-content-center">
+                <a class="tarot-card fill d-flex align-items-center"
+                   href="{{ url_for('next_round', first_num=card['number']) }}">
+                    <img src="/static/images/bg/shotaro-hamasaki-8FU_MZ2r0EQ-unsplash.jpg" class="fill" alt="...">
+                    <img src="{{ card['img'] }}" class="fill" alt="{{ card['name'] }}">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</header>
+
+{% endblock %}

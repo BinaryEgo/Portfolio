@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}Receive Your Confirmations{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<header class="tarot-bg">
+    <div class="container text-center py-4">
+        <!-- Header -->
+        <h1 class="night-mode tarot-header">
+            Pick Your <span class="text-warning">Second</span> Card
+        </h1>
+
+        <div class="col-lg-10 mx-auto">
+
+            <!-- Show Tarot Cards -->
+            <div class="row col-lg-10 mx-auto my-4 px-4">
+                {% for card in deal_cards %}
+                <div class="col d-flex justify-content-center">
+                    <a class="tarot-card fill d-flex align-items-center"
+                       href="{{ url_for('last_round', first_num= first_num, second_num=card['number']) }}">
+                        <img src="/static/images/bg/shotaro-hamasaki-8FU_MZ2r0EQ-unsplash.jpg" class="fill" alt="...">
+                        <img src="{{ card['img'] }}" class="fill" alt="{{ card['name'] }}">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</header>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}Reset Your Password{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<header class="tarot-bg">
+    <div class="container text-center py-4">
+        <!-- Header -->
+        <h4 class="night-mode">
+            Reset <span class="text-warning">Your</span> Password
+        </h4>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+            {% if category == 'success' %}
+            <p class="alert alert-success">{{ message }}</p>
+            {% else %}
+            <p class="alert alert-danger">{{ message }}</p>
+            {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <!-- Request Form -->
+        <div class="night-mode col-lg-6 mx-auto my-4">
+            <!-- Button to send email -->
+            <form method="POST" action="{{ url_for('reset_password_request') }}">
+                {{ wtf.form_field(form.email) }}
+                <input type="submit" name="action" value="Send Reset Email" class="col-4 btn btn-warning my-4">
+            </form>
+            <!-- Button to cancel -->
+            <a href="{{url_for('tarot_start')}}" class="col-4 btn btn-light my-2">
+                Go Back
+            </a>
+        </div>
+
+    </div>
+</header>
+
+{% endblock %}

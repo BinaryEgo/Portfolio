@@ -1,0 +1,1359 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}Data Science - Box Office vs Streaming{% endblock %}
+
+{% block content %}
+<body class="ds-bg">
+<div class="ds-paper container">
+    <div class="row">
+        <!-- Navigation -->
+        <div class="col-lg-3 order-lg-last">
+            <nav class="navbar sticky-top navbar-dark navbar-expand-lg" style="background-color: #193F42">
+                <div class="container-fluid flex-lg-column align-items-start">
+                    <a class="navbar-brand" href="#">Article Navigation</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarLinks" aria-controls="navbarLinks"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarLinks">
+                        <div class="navbar-nav flex-lg-column">
+                            <a class="nav-link" href="#intro1">What Defines A Movie's Success?</a>
+                            <a class="nav-link" href="#intro2">The Day-And-Date Dilemma</a>
+                            <a class="nav-link" href="#warnerBros">Warner Bros. And HBO Max</a>
+                            <a class="nav-link" href="#disneyPlus">Disney With Disney Plus Premier Access</a>
+                            <a class="nav-link" href="#theaterExclusive">Moviegoers Will Make The Trip For Event-Sized
+                                Films</a>
+                            <a class="nav-link" href="#conclude">Looking Ahead</a>
+                            <a class="nav-link" href="#interactive">Check It Out For Yourself</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Article-->
+        <div class="col-lg-9 order-lg-first">
+            <!-- Header -->
+            <header class="mt-4">
+                <h1>
+                    The Day-And-Date Experiment
+                </h1>
+                <p class="badge bg-secondary my-3 ms-0">10-15 min read</p>
+                <h5 class="col-lg-9">
+                    In reaction to the COVID-19 pandemic, some of Hollywood's top studios tinkered with theatrical
+                    distribution windows.
+                    Audiences were given the choice to stay home instead of purchasing a ticket to see a movie on the
+                    big
+                    screen.
+                    Did they want to?
+                </h5>
+                <p class="text-muted">By
+                    <a href="{{ url_for('home_page') }}">
+                        Jermy Francisco
+                    </a>
+                </p>
+
+                <p>Data Sources:</p>
+                <ul class="list-unstyled">
+                    <li><i class="fa-xs fa-solid fa-square"></i>
+                        <a href="https://trends.google.com/trends/explore">Google Trends</a>
+                    </li>
+                    <li><i class="fa-xs fa-solid fa-square"></i>
+                        <a href="https://www.boxofficemojo.com/">Box Office Mojo</a>
+                    </li>
+                    <li><i class="fa-xs fa-solid fa-square"></i>
+                        <a href="https://www.themoviedb.org/">The Movie Database API</a>
+                    </li>
+                </ul>
+            </header>
+
+            <!-- Intro -->
+            <section class="ds-intro mt-4 col-lg-10">
+                <h5 id="intro1" class="section-title py-2">What Defines A Movie's Success?</h5>
+                <p>
+                    When a movie is released in theaters, a successful debut means the box-office ticket sales are
+                    higher than
+                    its costs. These ticket sales are publicly available and even used to promote the film as the
+                    "number 1
+                    movie in
+                    America" — if they out-gross all others in a given week.
+                </p>
+                <p>The metrics get more complicated when a movie is released for a streaming platform like a Netflix. We
+                    can ask
+                    how many subscribers (new and current) streamed the film? How many finished the movie? How many
+                    renewed their subscription? What portion of the subscription revenue (or ad revenue if you're a
+                    Hulu) can we
+                    attribute to
+                    the movie? Does that offset the costs of making the film? The answers are likely stuck behind
+                    company
+                    letterhead — unknown to you
+                    and I.
+                </p>
+                <h5 id="intro2" class="section-title py-2">The Day-And-Date Dilemma</h5>
+                <p>
+                    So when a movie comes out in theaters and on a streamer <strong>at the same time</strong>, how do we
+                    measure
+                    its impact?
+                </p>
+                <p>
+                    Warner Bros. shocked the industry in December 2020 when it announced every WB theatrical release
+                    would be
+                    available
+                    day-and-date on HBO Max. Disney followed suit with releasing some movies on Disney Plus at a premier
+                    cost to
+                    subscribers.
+                    While it was more convenient for audiences, these strategies launched massive pushback from theater
+                    owners,
+                    directors,
+                    and actors concerned with their profits.
+                </p>
+                <p>
+                    An interesting avenue would be to compare the
+                    <a href="https://medium.com/google-news-lab/what-is-google-trends-data-and-what-does-it-mean-b48f07342ee8">
+                        Google Search popularity
+                    </a> for planning to watch the movie in theaters vs at home.
+                    Considering that AMC is the largest theater-chain in America, and using
+                    <em>Black Widow</em>
+                    as an example, we can check the popularity of people searching for "Black Widow AMC", versus
+                    "Black Widow Disney Plus", and map it against the film's box-office ticket sales.
+                    If the movie did not release on a streamer, then I compared the search for "the movie + Watch
+                    Online" instead.
+                </p>
+            </section>
+
+            <!-- Warner Bros -->
+            <section class="mt-4 col-lg-10">
+                <h5 id="warnerBros" class="section-title py-2">Warner Bros. And HBO Max</h5>
+                <p>COVID-19 forced many theaters to close their doors in 2020. Theaters in major markets like NYC and LA
+                    remained
+                    closed through at least the Spring of 2021 — with many operating at limited capacity until later in
+                    the
+                    year.
+                    Before then, moviegoers were waiting for news that an effective vaccine would be available for them.
+                    For many adults, that news would not come before April.
+                </p>
+                <p>Without knowing when COVID-19 restrictions would end and with cinema revenues cut short, it made
+                    sense for
+                    Warner Bros. to diversify
+                    their strategy. Seeing the opportunity to boost their new streaming platform, WB released their full
+                    2021
+                    theatrical slate
+                    on HBO Max and in theaters on the same day. While other major distributors who rely on ticket sales,
+                    like
+                    MGM or Sony,
+                    chose to delay their potential blockbusters, WB was able to shift their investments to HBO Max.
+                </p>
+                <p>Because these movies would be free add-ons to current subscribers, it was likely more popular to
+                    stream the
+                    film versus going to the theater. With the exception of <em>Godzilla vs Kong</em>
+                    [<a href="#chart2" data-bs-target="#hboMaxCarousel" data-bs-slide-to="1">2</a>], there is a
+                    trend for a WB film's opening week. The Google Search interest in seeing a movie on HBO Max was more
+                    popular
+                    than searches for seeing the movie at AMC. Of note are the spikes in theater interest over streaming
+                    that
+                    occur after opening week — as seen in
+                    [<a href="#chart2" data-bs-target="#hboMaxCarousel" data-bs-slide-to="1">2</a>],
+                    [<a href="#chart5" data-bs-target="#hboMaxCarousel" data-bs-slide-to="4">5</a>],
+                    [<a href="#chart7" data-bs-target="#hboMaxCarousel" data-bs-slide-to="6">7</a>],
+                    [<a href="#chart8" data-bs-target="#hboMaxCarousel" data-bs-slide-to="7">8</a>],
+                    [<a href="#chart9" data-bs-target="#hboMaxCarousel" data-bs-slide-to="8">9</a>], and
+                    [<a href="#chart10" data-bs-target="#hboMaxCarousel" data-bs-slide-to="9">10</a>]. This likely
+                    reflects the
+                    portion of the audience who delayed their
+                    trip to the theater, possibly to avoid crowds during COVID.
+                </p>
+
+                <!-- HBO Max Movie Carousel -->
+                <div class="row py-3">
+                    <!-- Carousel Slide Buttons -->
+                    <div class="col-2 pe-0 btn-group-vertical" role="group" aria-label="button group">
+                        <button type="button" data-bs-target="#hboMaxCarousel" data-bs-slide-to="0"
+                                class="btn btn-outline-secondary"
+                                aria-current="true" aria-label="Chart 1">
+                            1
+                        </button>
+                        <button type="button" data-bs-target="#hboMaxCarousel" data-bs-slide-to="1"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 2">
+                            2
+                        </button>
+                        <button type="button" data-bs-target="#hboMaxCarousel" data-bs-slide-to="2"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 3">
+                            3
+                        </button>
+                        <button type="button" data-bs-target="#hboMaxCarousel" data-bs-slide-to="3"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 4">
+                            4
+                        </button>
+                        <button type="button" data-bs-target="#hboMaxCarousel" data-bs-slide-to="4"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 5">
+                            5
+                        </button>
+                        <button type="button" data-bs-target="#hboMaxCarousel" data-bs-slide-to="5"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 6">
+                            6
+                        </button>
+                        <button type="button" data-bs-target="#hboMaxCarousel" data-bs-slide-to="6"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 7">
+                            7
+                        </button>
+                        <button type="button" data-bs-target="#hboMaxCarousel" data-bs-slide-to="7"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 8">
+                            8
+                        </button>
+                        <button type="button" data-bs-target="#hboMaxCarousel" data-bs-slide-to="8"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 9">
+                            9
+                        </button>
+                        <button type="button" data-bs-target="#hboMaxCarousel" data-bs-slide-to="9"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 10">
+                            10
+                        </button>
+                    </div>
+                    <div id="hboMaxCarousel" class="ps-0 carousel carousel-dark col-10" data-bs-touch="false"
+                         data-bs-interval="false">
+                        <!-- Carousel Content -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <!--Chart-->
+                                <figure>
+                                    <figure id="chart1"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#ww1984Modal">
+                                            Wonder Woman 1984
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <!--Chart-->
+                                <figure>
+                                    <figure id="chart2"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#godKongModal">
+                                            Godzilla vs. Kong
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart3"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#mKombatModal">
+                                            Mortal Kombat
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart4"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#conjuringModal">
+                                            The Conjuring: The Devil Made Me Do It
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart5"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#intheHeightsModal">
+                                            In The Heights
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart6"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#spaceJamLegModal">
+                                            Space Jam: A New Legacy
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart7"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#theSuiSquadModal">
+                                            The Suicide Squad
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart8"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#malignantModal">
+                                            Malignant
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart9"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#duneModal">
+                                            Dune
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart10"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#matrixResModal">
+                                            The Matrix Resurrections
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                        <!-- Carousel Buttons -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#hboMaxCarousel"
+                                data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#hboMaxCarousel"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+
+                <p>
+                    Of course, there are other factors at play: the timing of a movie release, the audience demand for
+                    the
+                    movie,
+                    critical reception, word-of-mouth, competition from other releases, etc. Even so, it was likely the
+                    same-day
+                    streaming offer that imposed a ceiling on the box-office gross.
+                </p>
+                <p>
+                    None of WB's 2021 films saw a domestic opening week north of $50M, averaging just $27.6M. The
+                    day-and-date
+                    strategy was likely seen as a success to WB as it propped up the HBO Max service. However, the fact
+                    that
+                    WB would announce the end of the day-and-date offering in 2022 suggests the desire to revitalize
+                    their
+                    theatrical business, without the competition from their own streaming service.
+                </p>
+                <p>
+                    Interestingly, streaming search interest spiked past the 30-day mark for each film. HBO Max movies
+                    were
+                    day-and-date
+                    only for the first 30 days. This could reflect audiences that were unaware of the change, since
+                    prior to
+                    COVID, movies
+                    typically did not go to streaming until 60-90 days after release. To the detriment of their
+                    theatrical
+                    business,
+                    WB's strategy encouraged audiences to look at HBO Max first, and theaters second.
+                </p>
+            </section>
+
+            <!-- Disney -->
+            <section class="mt-4 col-lg-10">
+                <h5 id="disneyPlus" class="section-title py-2">Disney Plus Premier Access </h5>
+                <p>
+                    Early into the COVID-19 pandemic, Disney had chosen to delay their blockbusters and have the
+                    "smaller"
+                    titles
+                    skip theaters completely — releasing films like <i>Raya and the Last Dragon</i> and <i>Soul</i>
+                    straight to
+                    Disney Plus. <i>Jungle Cruise</i> [<a href="#chart11" data-bs-target="#disneyPlusCarousel"
+                                                          data-bs-slide-to="0">1</a>]
+                    was Disney's first theatrical day-and-date release, only after theater capacity
+                    restrictions had opened up and the vaccination rate was rising. Disney saw what WB was attempting
+                    with HBO
+                    Max and took it one step
+                    further: charging a $30 premium for theatrical releases that would be available on Disney Plus
+                    "Premier
+                    Access".
+                </p>
+                <!-- Disney Plus Movie Carousel -->
+                <div class="row py-3">
+                    <!-- Carousel Slide Buttons -->
+                    <div class="col-2 pe-0 btn-group-vertical d-grid mb-auto" role="group" aria-label="button group">
+                        <button type="button" data-bs-target="#disneyPlusCarousel" data-bs-slide-to="0"
+                                class="btn btn-outline-secondary"
+                                aria-current="true" aria-label="Chart 11">
+                            1
+                        </button>
+                        <button type="button" data-bs-target="#disneyPlusCarousel" data-bs-slide-to="1"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 12">
+                            2
+                        </button>
+                        <button type="button" data-bs-target="#disneyPlusCarousel" data-bs-slide-to="2"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 13">
+                            3
+                        </button>
+                    </div>
+                    <div id="disneyPlusCarousel" class="ps-0 carousel carousel-dark col-10" data-bs-touch="false"
+                         data-bs-interval="false">
+                        <!-- Carousel Content -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <figure>
+                                    <figure id="chart11"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#jungleCruiseModal">
+                                            Jungle Cruise
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart12"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#cruellaModal">
+                                            Cruella
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart13"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#blackWidowModal">
+                                            Black Widow
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                        <!-- Carousel Buttons -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#disneyPlusCarousel"
+                                data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#disneyPlusCarousel"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <p>
+                    In all three cases, the Google Search interest in watching the film on Disney Plus was higher than
+                    seeing it
+                    at AMC, during opening week. However, all three films did decently well at box-office: the average
+                    opening
+                    week was $64M. The average is heavily skewed up by <i>Black Widow</i>
+                    [<a href="#chart13" data-bs-target="#disneyPlusCarousel" data-bs-slide-to="2">3</a>],
+                    which went on to be the year's fourth highest grossing title.
+                </p>
+                <p>
+                    Like with WB's titles, the gap in popularity between searching for the movie on streaming and
+                    searching
+                    for it in AMC became much closer after the third or fourth week of release. When a movie releases
+                    theatrically,
+                    the majority of the film's ticket sales will come in the first three weeks. Cutting the window of
+                    theatrical
+                    exclusivity
+                    down from sixty days to zero meant that the box-office would take a hit.
+                </p>
+                <p>
+                    Black Widow's sophomore week saw a ticket sale decline of 65%, the steepest second week fall for a
+                    Marvel
+                    movie.
+                    Considering the $30 premium, it is likely that Disney's offer did not attract a significant amount
+                    of new
+                    subscribers.
+                    Probably not enough to offset the loss in theatrical revenue, as Black Widow was the last title
+                    Disney chose
+                    to put on the day-and-date model for 2021.
+                </p>
+            </section>
+
+            <!-- Theatrical Exclusive -->
+            <section class="mt-4 col-lg-10">
+                <h5 id="theaterExclusive" class="section-title py-2">
+                    Moviegoers Will Make The Trip For Event-Sized Films
+                </h5>
+                <!-- Theater Only Movie Carousel -->
+                <div class="row py-3">
+                    <!-- Carousel Slide Buttons -->
+                    <div class="col-2 pe-0 btn-group-vertical d-grid mb-auto" role="group" aria-label="button group">
+                        <button type="button" data-bs-target="#theaterOnlyCarousel" data-bs-slide-to="0"
+                                class="btn btn-outline-secondary"
+                                aria-current="true" aria-label="Chart 14">
+                            1
+                        </button>
+                        <button type="button" data-bs-target="#theaterOnlyCarousel" data-bs-slide-to="1"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 15">
+                            2
+                        </button>
+                        <button type="button" data-bs-target="#theaterOnlyCarousel" data-bs-slide-to="2"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 16">
+                            3
+                        </button>
+                        <button type="button" data-bs-target="#theaterOnlyCarousel" data-bs-slide-to="3"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 17">
+                            4
+                        </button>
+                        <button type="button" data-bs-target="#theaterOnlyCarousel" data-bs-slide-to="4"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 18">
+                            5
+                        </button>
+                        <button type="button" data-bs-target="#theaterOnlyCarousel" data-bs-slide-to="5"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 19">
+                            6
+                        </button>
+                        <button type="button" data-bs-target="#theaterOnlyCarousel" data-bs-slide-to="6"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 20">
+                            7
+                        </button>
+                        <button type="button" data-bs-target="#theaterOnlyCarousel" data-bs-slide-to="7"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 21">
+                            8
+                        </button>
+                        <button type="button" data-bs-target="#theaterOnlyCarousel" data-bs-slide-to="8"
+                                class="btn btn-outline-secondary"
+                                aria-label="Chart 22">
+                            9
+                        </button>
+                    </div>
+                    <div id="theaterOnlyCarousel" class="ps-0 carousel carousel-dark col-10" data-bs-touch="false"
+                         data-bs-interval="false">
+                        <!-- Carousel Content -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <figure>
+                                    <figure id="chart14"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#spiderNWHModal">
+                                            Spider-Man: No Way Home
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart15"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#shangChiModal">
+                                            Shang-Chi and the Legend of the Ten Rings
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart16"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#venomCarnageModal">
+                                            Venom: Let There Be Carnage
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart17"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#f9Modal">
+                                            F9: The Fast Saga
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart18"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#eternalsModal">
+                                            Eternals
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart19"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#noTimeTDModal">
+                                            No Time to Die
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart20"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#quietPlaceTwoModal">
+                                            A Quiet Place Part II
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart21"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#ghostBusterAfterModal">
+                                            Ghostbusters: Afterlife
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="carousel-item">
+                                <figure>
+                                    <figure id="chart22"></figure>
+                                    <figcaption class="figure-caption">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#freeGuyModal">
+                                            Free Guy
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                        <!-- Carousel Buttons -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#theaterOnlyCarousel"
+                                data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#theaterOnlyCarousel"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <p>
+                    With the exception of <i>Black Widow</i>, the rest of the 2021's top grossing titles (domestically)
+                    were all
+                    theatrical exclusives. As the charts above show, the interest in searching "the movie + AMC" had a
+                    lead over
+                    the search interest in watching these films online (a search that would include pirating the movie).
+                    With
+                    <i>Spider-Man: No Way Home</i> leading the pack with a massive opening week of $390M — and excluding
+                    <i>Widow</i>
+                    —
+                    the top films averaged an opening week of $115M, way more than the day-and-date titles.
+                </p>
+                <p>
+                    What moviegoers are saying with their wallets is that if a movie is good enough, they will make the
+                    trip to
+                    the
+                    theaters. Although watching it at home may be more convenient, there is a clear preference to see
+                    the year's
+                    biggest
+                    movies on the big screen. Moviegoers have a demand for that event-like experience.
+                </p>
+            </section>
+
+            <!-- Conclusion -->
+            <section class="mt-4 col-lg-10">
+                <h5 id="conclude" class="section-title py-2">
+                    Looking Ahead
+                </h5>
+                <p>
+                    The quarantine period of COVID-19 allowed some of the industry's biggest distributors to experiment
+                    with the
+                    theatrical exclusivity window. At the time, it made sense to pivot from a theatrical model and boost
+                    the
+                    revenue
+                    coming in from streaming. As we entered the recovery phase of the pandemic, the day-and-date model
+                    became
+                    less lucrative. Moviegoers showed a willingness to return to the theater and a majority seem to
+                    prefer it
+                    over staying
+                    home.
+                </p>
+                <p>
+                    Ultimately, both Disney and Warner Bros. joined their peers in moving to a 30-45 day theatrical
+                    exclusivity
+                    model.
+                    This gave the movie enough time in theaters to make a bulk of their ticket sales, while also
+                    shortening the
+                    time
+                    subscribers of streaming services had to wait to see a movie at home. The day-and-date strategy is
+                    likely
+                    not over
+                    for films that a studio may deem "minor" (<i>Marry Me</i> released in theaters and on Paramount Plus
+                    earlier
+                    2022).
+                    However, studios are likely to be more careful with their major blockbusters — giving them more time
+                    in
+                    theaters
+                    before moving the offer to streaming.
+                </p>
+            </section>
+        </div>
+    </div>
+
+    <!-- Interactive Section -->
+    <section class="ds-interactive my-4 p-4 mx-4">
+        <h5 id="interactive">
+            Check It Out For Yourself
+        </h5>
+        <p>Input a movie and its release year below to chart the movie's domestic box-office gross
+            alongside the search popularity of seeing the movie online vs in-theater at AMC.</p>
+        <form method="post" action="{{ url_for('boxoffice_report') }}">
+            <div class="row align-items-end">
+                <div class="col-7">
+                    {{ wtf.form_field(form.movie) }}
+                </div>
+                <div class="col-3">
+                    {{ wtf.form_field(form.release_year) }}
+                </div>
+                <div class=" col-7 my-2">
+                    {{ wtf.form_field(form.streaming) }}
+                </div>
+                <div class="d-grid col-3 my-2">
+                    <button type='submit' class="btn btn-secondary" onclick="toggleSpinner()">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Spinner -->
+        <div class="d-flex justify-content-center my-4">
+            <div class="spinner-border text-primary" role="status" id="spinner">
+                <span class="visually-hidden">Loading..</span>
+            </div>
+        </div>
+
+        <!-- Data Visualization -->
+        {% if action == 'show_table' %}
+        <div class="row">
+            <!-- Chart -->
+            <div id="custom_section" class="col-lg-6 border">
+                <h5 class="pt-4 text-center">
+                    How Moviegoers Wanted to See <span class="text-primary"><em>{{ movie }}</em></span><br> vs Box
+                    Office Gross
+                </h5>
+                <figure id="custom_chart" class="mx-auto"></figure>
+            </div>
+            <!-- Table -->
+            <div class="col-lg-6 table-responsive text-end border" onload="toggleSpinner()" id="charts">
+                <div class="pt-4">
+                    {{ requested_table | safe }}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <p class="alert alert-danger">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+    </section>
+
+    <!-- Modals -->
+    <div class="modal fade" id="ww1984Modal" tabindex="-1"
+         aria-labelledby="ww1984ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ww1984ModalLabel">Wonder Woman 1984</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('Wonder Woman 1984', 2020) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('Wonder Woman 1984', 2020) }}
+                        <br><br>
+                        {{ get_movie_blurb('Wonder Woman 1984', 2020) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="godKongModal" tabindex="-1"
+         aria-labelledby="godKongModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="godKongModalLabel">Godzilla vs. Kong</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('Godzilla vs. Kong', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('Godzilla vs. Kong', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('Godzilla vs. Kong', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="mKombatModal" tabindex="-1"
+         aria-labelledby="mKombatModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mKombatModalLabel">Mortal Kombat</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('Mortal Kombat', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('Mortal Kombat', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('Mortal Kombat', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="conjuringModal" tabindex="-1"
+         aria-labelledby="conjuringModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="conjuringModalLabel">The Conjuring: The Devil Made Me Do It</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('The Conjuring: The Devil Made Me Do It', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('The Conjuring: The Devil Made Me Do It', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('The Conjuring: The Devil Made Me Do It', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="intheHeightsModal" tabindex="-1"
+         aria-labelledby="intheHeightsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="intheHeightsModalLabel">In The Heights</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('In The Heights', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('In The Heights', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('In The Heights', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="spaceJamLegModal" tabindex="-1"
+         aria-labelledby="spaceJamLegModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="spaceJamLegModalLabel">Space Jam: A New Legacy</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('Space Jam: A New Legacy', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('Space Jam: A New Legacy', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('Space Jam: A New Legacy', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="theSuiSquadModal" tabindex="-1"
+         aria-labelledby="theSuiSquadModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="theSuiSquadModalLabel">The Suicide Squad</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('The Suicide Squad', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('The Suicide Squad', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('The Suicide Squad', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="malignantModal" tabindex="-1"
+         aria-labelledby="malignantModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="malignantModalLabel">Malignant</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('Malignant', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('Malignant', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('Malignant', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="duneModal" tabindex="-1"
+         aria-labelledby="duneModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="duneModalLabel">Dune</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('Dune', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('Dune', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('Dune', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="matrixResModal" tabindex="-1"
+         aria-labelledby="matrixResModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="matrixResModalLabel">The Matrix Resurrections</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('The Matrix Resurrections', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('The Matrix Resurrections', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('The Matrix Resurrections', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="jungleCruiseModal" tabindex="-1"
+         aria-labelledby="jungleCruiseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="jungleCruiseModalLabel">Jungle Cruise</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('Jungle Cruise', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('Jungle Cruise', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('Jungle Cruise', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="cruellaModal" tabindex="-1"
+         aria-labelledby="cruellaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cruellaModalLabel">Cruella</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('Cruella', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('Cruella', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('Cruella', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="blackWidowModal" tabindex="-1"
+         aria-labelledby="blackWidowModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="blackWidowModalLabel">Black Widow</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('Black Widow', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('Black Widow', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('Black Widow', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="spiderNWHModal" tabindex="-1"
+         aria-labelledby="spiderNWHModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="spiderNWHModalLabel">Spider-Man: No Way Home</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('Spider-Man: No Way Home', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('Spider-Man: No Way Home', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('Spider-Man: No Way Home', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="shangChiModal" tabindex="-1"
+         aria-labelledby="shangChiModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="shangChiModalLabel">Shang-Chi and the Legend of the Ten Rings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('Shang-Chi and the Legend of the Ten Rings', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('Shang-Chi and the Legend of the Ten Rings', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('Shang-Chi and the Legend of the Ten Rings', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="venomCarnageModal" tabindex="-1"
+         aria-labelledby="venomCarnageModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="venomCarnageModalLabel">Venom: Let There Be Carnage</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('Venom: Let There Be Carnage', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('Venom: Let There Be Carnage', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('Venom: Let There Be Carnage', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="f9Modal" tabindex="-1"
+         aria-labelledby="f9ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="f9ModalLabel">F9: The Fast Saga</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('F9: The Fast Saga', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('F9: The Fast Saga', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('F9: The Fast Saga', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="eternalsModal" tabindex="-1"
+         aria-labelledby="eternalsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eternalsModalLabel">Eternals</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('Eternals', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('Eternals', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('Eternals', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="noTimeTDModal" tabindex="-1"
+         aria-labelledby="noTimeTDModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="noTimeTDModalLabel">No Time to Die</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('No Time to Die', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('No Time to Die', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('No Time to Die', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="quietPlaceTwoModal" tabindex="-1"
+         aria-labelledby="quietPlaceTwoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="quietPlaceTwoModalLabel">A Quiet Place Part II</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('A Quiet Place Part II', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('A Quiet Place Part II', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('A Quiet Place Part II', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ghostBusterAfterModal" tabindex="-1"
+         aria-labelledby="ghostBusterAfterModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ghostBusterAfterModalLabel">Ghostbusters: Afterlife</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('Ghostbusters: Afterlife', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('Ghostbusters: Afterlife', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('Ghostbusters: Afterlife', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="freeGuyModal" tabindex="-1"
+         aria-labelledby="freeGuyModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="freeGuyModalLabel">Free Guy</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <img class="img-fluid movie-poster mx-auto"
+                         src="{{ get_movie_poster('Free Guy', 2021) }}">
+                    <p class="ms-2">
+                        {{ get_movie_date('Free Guy', 2021) }}
+                        <br><br>
+                        {{ get_movie_blurb('Free Guy', 2021) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JavaScript -->
+
+    <!-- Show/Hide Spinner -->
+    <script type="text/javascript">
+            function toggleSpinner() {
+                var spinner = document.getElementById('spinner');
+                var displaySetting = spinner.style.display;
+
+                if (displaySetting == 'none') {
+                    spinner.style.display = 'block';
+                }
+                else {
+                    spinner.style.display = 'block';
+                }
+            }
+
+    </script>
+
+    <!-- Scroll To Chart on Page Load -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('html, body').animate({
+                scrollTop: $('#custom_section').offset().top
+            }, 'slow');
+        });
+
+    </script>
+
+    <!-- Plotly CDN -->
+    <script type="text/javascript">
+        var config = {responsive: true};
+        Plotly.setPlotConfig(config);
+
+        var custom_chart = {{ requested_chart | safe }};
+        Plotly.newPlot("custom_chart", custom_chart, {});
+
+    </script>
+    <script type="text/javascript">
+        var config = {responsive: true, displayModeBar: true};
+        Plotly.setPlotConfig(config);
+
+        var chart1 = {{ get_chart_for("Wonder Woman 1984") | safe }};
+        Plotly.newPlot("chart1", chart1, {});
+
+        var chart2 = {{ get_chart_for("Godzilla vs. Kong") | safe }};
+        Plotly.newPlot("chart2", chart2, {});
+
+        var chart3 = {{ get_chart_for("Mortal Kombat") | safe }};
+        Plotly.newPlot("chart3", chart3, {});
+
+        var chart4 = {{ get_chart_for("The Conjuring: The Devil Made Me Do It") | safe }};
+        Plotly.newPlot("chart4", chart4, {});
+
+        var chart5 = {{ get_chart_for("In The Heights") | safe }};
+        Plotly.newPlot("chart5", chart5, {});
+
+        var chart6 = {{ get_chart_for("Space Jam: A New Legacy") | safe }};
+        Plotly.newPlot("chart6", chart6, {});
+
+        var chart7 = {{ get_chart_for("The Suicide Squad") | safe }};
+        Plotly.newPlot("chart7", chart7, {});
+
+        var chart8 = {{ get_chart_for("Malignant") | safe }};
+        Plotly.newPlot("chart8", chart8, {});
+
+        var chart9 = {{ get_chart_for("Dune") | safe }};
+        Plotly.newPlot("chart9", chart9, {});
+
+        var chart10 = {{ get_chart_for("The Matrix Resurrections") | safe }};
+        Plotly.newPlot("chart10", chart10, {});
+
+        var chart11 = {{ get_chart_for("Jungle Cruise") | safe }};
+        Plotly.newPlot("chart11", chart11, {});
+
+        var chart12 = {{ get_chart_for("Cruella") | safe }};
+        Plotly.newPlot("chart12", chart12, {});
+
+        var chart13 = {{ get_chart_for("Black Widow") | safe }};
+        Plotly.newPlot("chart13", chart13, {});
+
+        var chart14 = {{ get_chart_for("Spider-Man: No Way Home") | safe }};
+        Plotly.newPlot("chart14", chart14, {});
+
+        var chart15 = {{ get_chart_for("Shang-Chi and the Legend of the Ten Rings") | safe }};
+        Plotly.newPlot("chart15", chart15, {});
+
+        var chart16 = {{ get_chart_for("Venom: Let There Be Carnage") | safe }};
+        Plotly.newPlot("chart16", chart16, {});
+
+        var chart17 = {{ get_chart_for("F9: The Fast Saga") | safe }};
+        Plotly.newPlot("chart17", chart17, {});
+
+        var chart18 = {{ get_chart_for("Eternals") | safe }};
+        Plotly.newPlot("chart18", chart18, {});
+
+        var chart19 = {{ get_chart_for("No Time to Die") | safe }};
+        Plotly.newPlot("chart19", chart19, {});
+
+        var chart20 = {{ get_chart_for("A Quiet Place Part II") | safe }};
+        Plotly.newPlot("chart20", chart20, {});
+
+        var chart21 = {{ get_chart_for("Ghostbusters: Afterlife") | safe }};
+        Plotly.newPlot("chart21", chart21, {});
+
+        var chart22 = {{ get_chart_for("Free Guy") | safe }};
+        Plotly.newPlot("chart22", chart22, {});
+
+    </script>
+</div>
+</body>
+
+{% endblock %}

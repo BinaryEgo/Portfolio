@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}Robots.Txt for {{ website }}'s {% endblock %}
+
+{% block content %}
+
+<!---- GET = Request Website From User ---->
+{% if request.method == "GET" %}
+<div style="height:100vh" class="container-fluid row">
+    <form method="post" novalidate class="my-auto col-lg-8 mx-auto" action="{{ url_for('show_robots_txt') }}">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+        <p class="alert alert-danger">{{ message }}</p>
+        {% endfor %}
+        {% endwith %}
+        <!-- Header -->
+        <h1 class="mb-4">ROBOTS.TXT LOOK-UP</h1>
+        <!-- Instructions-->
+        <p>
+            A robots.txt file
+            <span class="text-muted">(<a
+                    href="https://developers.google.com/search/docs/advanced/robots/intro#:~:text=txt-,A%20robots.,or%20password%2Dprotect%20the%20page.">what is that?</a>)
+            </span>
+            provides a bot (also known as "spider" or "crawler") with rules regarding which pages can be scraped
+            for
+            data — if any. Disobeying these rules could result in legal trouble and/or being blocked from the website.
+        </p>
+        <p>
+            To avoid those headaches, you can use the form below to check a website's robot.txt!
+            <br>
+            <i class="text-muted text-primary small">Note: Not all websites bother with a robot.txt file. In these
+                cases, the rules
+                for web-scraping may be included in the site's Terms of Conditions, or similar legal pages. </i>
+        </p>
+
+        <!-- Input Field & Button -->
+        {{ wtf.form_field(form.url) }}
+        <button type="submit" class="btn btn-outline-primary my-3">
+            Show Robot.Txt
+        </button>
+    </form>
+</div>
+{% endif %}
+
+<!---- POST = Show Robots Txt ---->
+{% if request.method == "POST" %}
+<div class="container-fluid p-4">
+    <div class="row">
+        <!-- Left Side -->
+        <div class="col-lg-3 mx-auto my-2">
+            <h1 class="fs-1">NAVIGATION</h1>
+            <h4>User-Agent</h4>
+            <p>Identifies who these rules apply to. A user-agent of <mark>*</mark> means the rule(s) apply to everyone.</p>
+            <hr class="my-4">
+            <h4>Disallow</h4>
+            <p>These rules can suggest either: Full Access, Block Access, or Partial Access.</p>
+            <ul class="list-unstyled">
+                <li>
+                    <strong>Full Access:</strong> If the disallow is blank, crawling is permitted.
+                    <p class="pre text-start small p-3">
+                        User-agent: *<br>
+                        Disallow:
+                    </p>
+                </li>
+                <li>
+                    <strong>Block Access:</strong> If the disallow only contains a slash, crawling is not permitted
+                    anywhere.
+                    <p class="pre text-start small p-3">
+                        User-agent: *<br>
+                        Disallow: /
+                    </p>
+                </li>
+                <li>
+                    <strong>Partial Access:</strong> Crawling is not permitted on this specific path.
+                    <p class="pre text-start small p-3">
+                        User-agent: *<br>
+                        Disallow: /path
+                    </p>
+                </li>
+            </ul>
+            <hr class="my-4">
+            <h4>Allow</h4>
+            <p>Although less common, some sites point out specific paths where crawling is permitted.</p>
+            <p class="pre text-start small p-3">
+                User-agent: *<br>
+                Allow: /path
+            </p>
+        </div>
+        <!-- Right Side -->
+        <div class="col-lg-9 mx-auto">
+            <div class="container p-3 text-end">
+                <a href="{{ url_for('show_robots_txt')}}" class="btn btn-danger">Go Back</a>
+            </div>
+            <div class="scroll-box container">
+                <pre class="container border">
+                    {{ robots_txt|safe }}
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

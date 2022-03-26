@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}Receive Your Confirmations{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<header class="tarot-bg">
+    <div class="container text-center py-4">
+        <!-- Header -->
+        <h1 class="night-mode tarot-header">
+            Thank you <span class="text-warning">{{ current_user.username.upper() }}</span>!
+        </h1>
+        <p class="night-mode tarot-header fs-6">The following message is for you:</p>
+
+        <div class="col-lg-10 mx-auto mt-4">
+            <!-- Divined Message -->
+            <p class="night-mode py-4 fs-5"><i>{{ total }}</i></p>
+            <!-- Show Tarot Cards -->
+            <div class="row col-lg-10 mx-auto my-4 px-4">
+                {% for card in selected_cards %}
+                <div class="col d-flex justify-content-center">
+                    <div class="tarot-card fill d-flex align-items-center">
+                        <img src="{{ deck[card]['img'] }}" class="fill" alt="{{ deck[card]['name'] }}">
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- Add a Message -->
+            <a class="col-6 btn btn-warning mt-4" href="{{ url_for('add_message') }}">Add Your Own Message</a>
+            <!-- Go Back to Start -->
+            <a class="col-6 btn btn-outline-warning mt-4" href="{{ url_for('logout') }}">Thanks! Log Me Out</a>
+            <!-- Go Back to Jerm's Home -->
+            <a class="col-6 btn btn-outline-info my-4" href="{{ url_for('home_page') }}">Exit to Jerm's homepage</a>
+        </div>
+    </div>
+</header>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}Jermy Francisco{% endblock %}
+
+{% block content %}
+<script>
+      function navigate() {
+        window.location.href = '{{url_for("boxoffice_report") }}';
+        }
+        fetch('page_preloader').then(navigate);
+</script>
+
+<div class="preload night-mode">
+    <div>
+        <h1 class="text-center">Just A Moment...</h1>
+        <div class="preload-content row container">
+            <div class="col-8">
+                <image class="img-fluid preload-pacman" src="/static/gifs/actionboard.gif"></image>
+            </div>
+            <div class="col-4 d-flex align-items-center fa-2x">
+                <i class="preload-dots fa-solid fa-circle"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

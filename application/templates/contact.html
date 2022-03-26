@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}Jermy Francisco - Contact{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<header class="bg-image-sub-page py-md-4"
+        style="background-image: url('static/images/bg/youssef-sarhan-SdtH9WyDmRE-unsplash - photo.jpg');"
+>
+    <div class="container">
+        <div class="row mb-4 mx-4 px-4">
+            <!-- Intro Text -->
+            <div class="page-header night-mode py-3 mb-2 col-md-7 text-md-start text-center">
+                <!-- Code -->
+                <h6>
+                    <span class="code-tag">< h6 </span> class=<span class="code-text">"contact-form"</span><span
+                        class="code-tag">></span> Contact Me <span class="code-tag">< h6 ></span>
+                </h6>
+                <!-- Heading -->
+                <h1>GET IN TOUCH</h1>
+                <p class="subtitle">
+                    Send me a message and learn where else to find me on the internet!
+                    <span class="blinking-cursor">|</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Message Sent Success -->
+{% if msg_sent == True %}
+<div class="container">
+    <p class="msg-sent-true text-center alert alert-success">Thank you! I will get back to you soon.</p>
+</div>
+{% endif %}
+
+<!-- Message Sent Failed -->
+{% if msg_sent == False %}
+<div class="container">
+    <p class="msg-sent-true text-center alert alert-danger">Invalid email - please try again!</p>
+</div>
+{% endif %}
+
+<!-- Contact Me -->
+<div class="container py-2 my-3 text-md-start text-center">
+    <p class="alert alert-warning text-center">
+        I am currently looking for full-time employment!
+        <br>
+        If you believe I would be good fit* for yor company, <br> please reach out!
+        <br>
+        <br>
+        * <span class="small">I prefer fully-remote, non-freelance opportunities</span> *
+    </p>
+
+    <!-- Contact Form -->
+    <div class="container py-4">
+        <h4 class="mb-4 border-bottom border-2 border-info pb-2">Send Me A Message</h4>
+        <form method="POST" class="container form col-lg-6" role="form">
+            <!-- Name -->
+            <div class="row form-input">
+                {{ form.csrf_token }}
+                {{ wtf.form_field(form.name, class='form-control', placeholder='Name') }}
+            </div>
+            <!-- Email -->
+            <div class="row pt-3 form-input">
+                {{ wtf.form_field(form.email, class='form-control', placeholder='Email') }}
+            </div>
+            <!-- Subject -->
+            <div class="row pt-3 form-input">
+                {{ wtf.form_field(form.subject, class='form-control', placeholder='Subject') }}
+            </div>
+            <!-- Message -->
+            <div class="row pt-3 form-input">
+                {{ wtf.form_field(form.message, class='form-control', placeholder='Message') }}
+            </div>
+            <!-- Submit -->
+            <div class="row form-input pt-4 mt-2 col-lg-6 px-3">
+                {{ wtf.form_field(form.submit, class='btn btn-outline-primary') }}
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Find Me -->
+<div class="container py-2 my-3 text-md-start text-center">
+    <div class="container">
+        <h4 class="mb-4 border-bottom border-2 border-info pb-2">Follow Me</h4>
+        <p>You can find me on <a href="https://www.linkedin.com/in/jermyfrancisco/"><i class="fa-brands fa-linkedin-in">
+            LinkedIn</i></a>
+            and <a href="#"><i class="fa-brands fa-github"> Github</i></a>.</p>
+    </div>
+</div>
+
+{% endblock %}

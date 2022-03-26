@@ -1,0 +1,406 @@
+body{
+    font-family: 'Nunito', sans-serif;
+}
+
+h1{
+   font-family: 'Merriweather Sans', sans-serif;
+   font-weight: 800;
+   font-size: 72px;
+}
+
+h2,h3,h4{
+   font-family: 'Merriweather Sans', sans-serif;
+   font-weight: 600;
+   color: #002B9B;
+}
+
+h6{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #F27973;
+}
+
+small{
+    font-size: 10px;
+}
+
+a{
+    text-decoration: none;
+}
+
+figcaption{
+    text-align: center;
+}
+
+/* ------- Id's ------- */
+#spinner {
+    display: none;
+}
+
+/* ------- Classes ------- */
+
+.accomplishment{
+    color:#03B6BD;
+    font-weight: 600;
+}
+
+.badge{
+    font-size: 1em;
+    margin: 0.5em;
+}
+
+.bg-image {
+    background-color: #181818;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+}
+
+.bg-image-sub-page {
+    background-color: #181818;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 50vh;
+}
+
+.btn-group-vertical{
+    max-width: 50px;
+    max-height: 450px;
+}
+
+.card-top{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel {
+    max-width:712px;
+}
+
+.carousel-control-prev {
+    margin-top: 450px;
+}
+
+.carousel-control-next {
+    margin-top: 450px;
+}
+
+
+.carousel-item {
+    overflow: auto;
+}
+
+.code-tag{
+    color: #EAB569;
+}
+
+.code-text{
+    color: #03B6BD;
+}
+
+.company{
+    color: #F27973;
+    font-weight: 600;
+}
+
+.cursor{
+    color: white;
+}
+
+.ds-bg{
+    background-color:#CB8E4A;
+}
+
+.ds-interactive{
+    background:#FFF7EF;
+}
+
+.ds-paper{
+    background: #FFFFFF;
+    padding: 4rem 2rem;
+}
+
+.hashtag{
+    font-size:12px;
+    color: blue;
+}
+
+.help-block {
+    color: crimson;
+    padding-top: 4px;
+}
+
+.hover-text{
+    position: absolute;
+}
+
+.js-plotly-plot .plotly .modebar {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.fill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
+
+.fill img {
+    flex-shrink: 50%;
+    min-width: 100%;
+    min-height: 100%
+}
+
+.movie-poster{
+    height: 60vh;
+}
+
+.navbar{
+    background-color: #181818 ;
+}
+
+.night-mode{
+    color: white;
+}
+
+.page-header{
+    background-color: rgba(24, 24, 24, 0.9);
+}
+
+.profile-pic{
+    max-width: 75%;
+    height: auto;
+}
+
+.section-container {
+    background: #212529;
+}
+
+.section-title {
+    font-weight: 600;
+    color: #CB8E4A;
+}
+
+.scroll-box {
+    height: 800px;
+    width: auto;
+    overflow:scroll;
+}
+
+.subtitle{
+    font-size: 24px;
+    font-weight: 300;
+    background-color: rgba(5, 168, 180, 0.8);
+}
+
+.pre{
+    background: #E7E9EB;
+    font-family: monospace;
+}
+
+.preload{
+    height:100vh;
+    display: flex;
+    background-color: #181818;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.preload-content{
+}
+
+.preload-pacman{
+    width:50%;
+    animation: pac-man 5s;
+    animation-iteration-count: infinite;
+}
+
+.preload-dots{
+    animation: feed 5s;
+    animation-iteration-count: infinite;
+}
+
+.tarot-bg{
+    background: #181818;
+    height: 112vh
+}
+
+.tarot-card{
+    width: 200px;
+    height: 300px;
+    box-shadow: 0 4px 12px 0 #E7E9EB;
+    border-radius: 5px;
+    animation: slide-right 3s;
+
+}
+
+.tarot-header{
+    animation: fadeInAnimation ease 10s;
+    animation-iteration-count:1;
+    animation-fill-mode: forwards;
+}
+
+.tarot-instructions{
+    animation: fadeInAnimation ease 15s, slide-in 5s;
+    animation-iteration-count:1;
+    animation-fill-mode: forwards;
+}
+
+
+
+/* ------- Animations ------- */
+
+
+@keyframes fadeInAnimation{
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes slide-in{
+    from{ margin-top: 100%; }
+    to { margin-top: 0%; }
+}
+
+@keyframes slide-right{
+    from{ margin-right: 100%; }
+    to { margin-right: 0%; }
+}
+
+@keyframes pac-man{
+    from { margin-right: 100%; }
+    to { margin-left: 100%; }
+}
+
+@keyframes feed{
+    from { margin-left: 100%; color:blue}
+    25% { margin-left:50%; }
+    35% { margin-left:30%; }
+    50% { margin-left:100%; transform: scale(2); color:red; }
+    75% { margin-right:100%; transform: scale(0.5); color:yellow; }
+    to { margin-right: 100%; opacity:0%;}
+}
+
+/* ------- Hover Effects ------- */
+
+a img:last-child {
+    display: none;
+}
+
+a:hover img:last-child {
+    display: block;
+}
+
+a:hover img:first-child {
+    display:none;
+}
+
+.card-top:hover .hover-text{
+    display:none;
+}
+
+/* ------- Blinking Cursor ------- */
+
+
+.blinking-cursor {
+  font-weight: 100;
+  font-size: 26px;
+  color: white;
+  -webkit-animation: 1s blink step-end infinite;
+  -moz-animation: 1s blink step-end infinite;
+  -ms-animation: 1s blink step-end infinite;
+  -o-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
+}
+
+@keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+
+@-webkit-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+
+@-ms-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+
+@-o-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+
+/* ------- Tablet Specific ------- */
+
+
+@media (max-width: 1024px) {
+    h1{
+        font-size:42px;
+    }
+
+    /* Classes */
+    .bg-image{
+        height:75vh;
+    }
+
+    .blinking-cursor {
+        font-size:20px;
+    }
+
+    .subtitle{
+        font-size:18px;
+    }
+
+    .tarot-card{
+    width: 150px;
+    height: 200px;
+    }
+}
+
+/* ------- Mobile Specific ------- */
+
+@media (max-width: 600px) {
+    h1{
+        font-size:36px;
+    }
+
+    /* Classes */
+    .tarot-card{
+    width: 100px;
+    height: 150px;
+    }
+}
+
