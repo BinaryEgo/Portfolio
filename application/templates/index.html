@@ -7,7 +7,7 @@
 <!-- Page Header -->
 <header class="bg-image py-md-4"
         style="background-image: url('static/images/bg/artin-bakhan-SqLyNHbsLKQ-unsplash - laptop edited.jpg');"
-        xmlns:onmouseover="http://www.w3.org/1999/xhtml" xmlns:onmouseover="http://www.w3.org/1999/xhtml">
+>
     <div class="container">
         <div class="row mb-4 mx-4 px-4">
             <!-- Intro Text -->
@@ -99,7 +99,7 @@
                 <!-- Accordion 1 -->
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="accordion-button collapsed hover-excel" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseTwo">
                             With Excel
                         </button>
@@ -228,7 +228,7 @@
                 <!-- Accordion 2 -->
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="accordion-button collapsed hover-python" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             With Python
                         </button>
@@ -254,13 +254,14 @@
                                         <div class="card-body">
                                             <h5 class="card-title py-2 border-top"><strong>
                                                 <a href="{{ url_for('tarot_start') }}">
-                                                    Exclusive Fortune Teller
+                                                    Exclusive Affirmation Generator
                                                 </a>
                                             </strong></h5>
                                             <p class="card-text">
                                                 I imagined this "exclusive" site where users would need to sign in order
-                                                to receive a message. The user also has the choice to add their own
-                                                message into the rotation of possible fortunes.
+                                                to receive a message. By registering, they would get added to an e-mail
+                                                newsletter. The user also has the choice to add their own message into
+                                                the rotation of possible affirmations.
                                                 <br><br>
                                                 I created this to showcase my understanding of:
                                             <ul>
@@ -285,89 +286,97 @@
                                 <!-- Card 2 -->
                                 <div class="col">
                                     <div class="card text-start">
-                                    <div class="card-top">
-                                        <h5 class="hover-text alert-info p-4">Hover over me for a preview!</h5>
-                                        <a>
-                                            <img src="/static/images/RobotTxt_Screenshot.png"
-                                                 class="card-img-top"
-                                                 alt="Inventory Report Preview Static">
-                                            <img src="/static/gifs/RobotsTxtPreview.gif" class="card-img-top"
-                                                 alt="Inventory Report Preview Gif">
-                                        </a>
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title py-2 border-top"><strong>
-                                            <a href="{{ url_for('show_robots_txt') }}">
-                                                Robots.txt Look-up
+                                        <div class="card-top">
+                                            <h5 class="hover-text alert-info p-4">Hover over me for a preview!</h5>
+                                            <a>
+                                                <img src="/static/images/RobotTxt_Screenshot.png"
+                                                     class="card-img-top"
+                                                     alt="Inventory Report Preview Static">
+                                                <img src="/static/gifs/RobotsTxtPreview.gif" class="card-img-top"
+                                                     alt="Inventory Report Preview Gif">
                                             </a>
-                                        </strong></h5>
-                                        <p class="card-text">
-                                            Robots.txt files provide useful rules for devs looking to safely web-scrape.
-                                            This tool makes finding these files more convenient, <i>before</i> you run
-                                            the web-scraping bot. If nothing else, it may serve as a learning tool.
-                                            <br><br>
-                                            Once given a valid url, the site will display a "beautified" version of the
-                                            url's robot.txt and a "how-to-read" guide.
-                                        </p>
-                                        <a href="{{ url_for('show_robots_txt') }}" class="btn btn-dark mt-2">
-                                            Take Me To It!</a>
-                                        <a href="#" class="btn btn-light mt-2">
-                                            See The Code On Github</a>
-                                        </p>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title py-2 border-top"><strong>
+                                                <a href="{{ url_for('show_robots_txt') }}">
+                                                    Robots.txt Look-up
+                                                </a>
+                                            </strong></h5>
+                                            <p class="card-text">
+                                                Robots.txt files provide a useful guide for devs looking to safely
+                                                web-scrape.
+                                                This tool makes finding these files more convenient, <i>before</i> you
+                                                run
+                                                the web-scraping bot. If nothing else, it may serve as a learning tool.
+                                                <br><br>
+                                                Once given a valid url, the site will display a "beautified" version of
+                                                the
+                                                url's robot.txt and a "how-to-read" guide.
+                                            </p>
+                                            <a href="{{ url_for('show_robots_txt') }}" class="btn btn-dark mt-2">
+                                                Take Me To It!</a>
+                                            <a href="#" class="btn btn-light mt-2">
+                                                See The Code On Github</a>
+                                            </p>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item hashtag">#Flask #Jinja #WebScraping #Robots.txt
+                                                #LearningTool
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item hashtag">#Flask #Jinja #WebScraping #Robots.txt
-                                            #LearningTool
-                                        </li>
-                                    </ul>
-                                </div>
                                 </div>
                                 <!-- Card 3 -->
                                 <div class="col">
                                     <div class="card text-start">
-                                    <div class="card-top">
-                                        <h5 class="hover-text alert-info p-4">Hover over me for a preview!</h5>
-                                        <a>
-                                            <img src="/static/images/BoxOffice_Screenshot.png"
-                                                 class="card-img-top"
-                                                 alt="Inventory Report Preview Static">
-                                            <img src="/static/gifs/BoxOfficePreview.gif" class="card-img-top"
-                                                 alt="Inventory Report Preview Gif">
-                                        </a>
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title py-2 border-top"><strong>
-                                            <a href="{{ url_for('page_preloader') }}">
-                                                Data Science - Box Office vs Streaming
+                                        <div class="card-top">
+                                            <h5 class="hover-text alert-info p-4">Hover over me for a preview!</h5>
+                                            <a>
+                                                <img src="/static/images/BoxOffice_Screenshot.png"
+                                                     class="card-img-top"
+                                                     alt="Inventory Report Preview Static">
+                                                <img src="/static/gifs/BoxOfficePreview.gif" class="card-img-top"
+                                                     alt="Inventory Report Preview Gif">
                                             </a>
-                                        </strong></h5>
-                                        <p class="card-text">
-                                            This is my analysis of how Hollywood's day-and-date distribution strategy
-                                            impacted 2021's box-office and the moviegoing audience. This could either
-                                            be an industry data report, internal newsletter, etc.
-                                            <br><br>
-                                            The charts are made using Plotly. To help with page-loading, I stored the
-                                            charts used in the report in a database.
-                                        </p>
-                                        <a href="{{ url_for('page_preloader') }}" class="btn btn-dark mt-2">
-                                            Take Me To It!</a>
-                                        <a href="#" class="btn btn-light mt-2">
-                                            See The Code On Github</a>
-                                        </p>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title py-2 border-top"><strong>
+                                                <a href="{{ url_for('page_preloader') }}">
+                                                    Data Science - Box Office vs Streaming
+                                                </a>
+                                            </strong></h5>
+                                            <p class="card-text">
+                                                This is my analysis of how Hollywood's day-and-date distribution
+                                                strategy
+                                                impacted 2021's box-office and the moviegoing audience. This could
+                                                either
+                                                be an industry data report, internal newsletter, etc.
+                                                <br><br>
+                                                The charts are made using Plotly. To help with page-loading, I stored
+                                                the
+                                                charts used in the report in a database.
+                                            </p>
+                                            <a href="{{ url_for('page_preloader') }}" class="btn btn-dark mt-2">
+                                                Take Me To It!</a>
+                                            <a href="#" class="btn btn-light mt-2">
+                                                See The Code On Github</a>
+                                            </p>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item hashtag">#Flask #Numpy #Pandas #Plotly #API
+                                                #Sql-lite
+                                                #Jquery #Javascript
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item hashtag">#Flask #Numpy #Pandas #Plotly #API #Sql-lite
-                                            #Jquery #Javascript
-                                        </li>
-                                    </ul>
-                                </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Button for Full Portfolio -->
-                <a class="mt-4 btn btn-primary" type="button" href="{{ url_for('show_portfolio') }}">See My Full Portfolio</a>
+                <a class="mt-4 btn btn-primary" type="button" href="{{ url_for('show_portfolio') }}">See My Full
+                    Portfolio</a>
             </div>
         </div>
     </div>

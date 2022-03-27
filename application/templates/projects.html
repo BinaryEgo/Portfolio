@@ -20,7 +20,7 @@
                 <!-- Heading -->
                 <h1>PORTFOLIO</h1>
                 <p class="subtitle">
-                    What I have worked on so far
+                    What I have worked on so far...
                     <span class="blinking-cursor">|</span>
                 </p>
             </div>
@@ -28,84 +28,357 @@
     </div>
 </header>
 
-<!-- About Me Content -->
-<div class="container py-2 my-4 text-md-start">
-    <!-- Hello -->
-    <h4 class="border-bottom border-2 border-info py-2">Hello There!</h4>
-    <div class="container row text-start">
-        <!-- About Me Text -->
-        <div class="col-lg-6 py-4">
-            <p>My name is Jermy – or "Jerm" for short. I enjoy creating things,
-                whether that be
-                on paper or for the web. After over 5 years of building dynamic data models with
-                <strong>Excel</strong>
-                for my previous employer, I was inspired to <em>"level up"</em> – to step further into the world of
-                tech!
-                <br>
-                <br>
-                I built and designed this website to showcase what I have learned.
-                <br>
-                <br>
-                Now that I have added <strong>HTML,
-                    CSS,
-                    Python </strong>
-                and <strong>SQL</strong> to my tool box, and I am excited to both put my skills to work and to
-                strengthen
-                my web & software development skills.
-            </p>
-            <p class="alert alert-info">I got my Bachelor of Business Administration (BBA) from CUNY Baruch College in
-                2015.</p>
+<!-- Portfolio -->
+<body class="portfolio-bg night-mode">
+<div class="container my-4 py-4">
+    <div class="row">
+        <!-- Description -->
+        <div class="col-md-3 text-md-start text-center">
+            <h5>Header</h5>
+            <p>some description</p>
         </div>
-    </div>
-    <!-- Qualifications -->
-    <h4 class="border-bottom border-2 border-info py-2">My Current Skill Set</h4>
-    <table class="my-4 table qualifications">
-        <tbody>
-        <tr>
-            <th scope="row">LANGUAGES</th>
-            <td>Python, SQL, HTML, CSS</td>
-        </tr>
-        <tr>
-            <th scope="row">FRAMEWORKS</th>
-            <td>Bootstrap, Tkinter, Flask, Jinja, Pandas, NumPy</td>
-        </tr>
-        <tr>
-            <th scope="row">SOFTWARE</th>
-            <td>Microsoft Office, PyCharm, MySQL, Postman</td>
-        </tr>
-        <tr>
-            <th scope="row">SKILLS</th>
-            <td>Project Management, Data Analysis, Web Development, Object Oriented Programming (OOP), Web Scraping</td>
-        </tr>
-        </tbody>
-    </table>
-    <!-- Employment History -->
-    <h4 class="border-bottom border-2 border-info py-2">Employment History</h4>
-    <div class="mt-4 container">
-        <h5>Senior Manager, Analytics & Operations <span class="company">@ Screenvision Media</span></h5>
-        <p class="fs-6 text-muted">Oct 2015 - Feb 2022</p>
-        <div class="col-lg-6">
-            <p>Screenvision Media is an out-of-home advertising company with a focus on cinema. I led the team
-                responsible
-                for impression forecasting and analysis, managing campaign delivery, and optimizing inventory
-                utilization.</p>
-            <ul>
-                <li class="py-3">
-                    <span class="accomplishment">Created a “Sales Planning Tool”</span> – in Excel that enabled our Local/Regional sellers to navigate our
-                    inventory of over 70K locations, forecast media campaigns, and generate paperwork.
-                </li>
-                <li class="py-3">
-                    <span class="accomplishment">Designed Inventory/Campaign Management & Reporting workflows</span> – through Excel workbooks I created
-                    for optimizing ad placement, tracking inventory utilization, planning make-goods, etc.
-                </li>
-                <li class="py-3">
-                    <span class="accomplishment">Wrote Weekly Internal Newsletters</span> – for the company. I provided analysis of the weekend’s box-office
-                    performance and industry trends.
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
 
+        <!-- Cards -->
+        <div class="row col-md-9 d-flex justify-content-center">
+            <!-- First Row -->
+            <div class="row">
+                <!-- Card 1 -->
+                <div class="col-md me-2 card portfolio-card">
+                    <div class="card-top">
+                        <h5 class="hover-text alert portfolio-alert p-3 text-center">Click me for a preview!</h5>
+                        <img src="/static/images/PlanningTool_Screenshot.png"
+                             class="card-img-top" data-bs-toggle="modal" data-bs-target="#projectModal1"
+                             alt="Sales Planning Tool Preview Static">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="portfolio-title">
+                            Sales Planning Tool
+                            <span class="badge bg-success portfolio-badge">
+                                Excel
+                            </span>
+                        </h5>
+                        <div class="d-flex justify-content-center d-lg-none">
+                            <button type="button" class="portfolio-button my-2 btn btn-light" data-bs-toggle="collapse"
+                                    data-bs-target="#portfolio-text-1" aria-expanded="false"
+                                    aria-controls="portfolio-text-1">
+                                See Description
+                            </button>
+                        </div>
+                        <div id="portfolio-text-1" class="portfolio-text collapse d-lg-block">
+                            <p> This tool allowed the Local/Regional Sales teams
+                                of Screenvision Media to:
+                            <ul>
+                                <li> forecast a campaign's impressions and cost</li>
+                                <li> dynamically change details (e.g. flight, targets, rates)</li>
+                                <li> prepare the paperwork needed to go to order</li>
+                            </ul>
+                            <em>Instructions are included within the file!</em>
+                            <a href="/static/files/Sales_Planning_Tool_Sample.xlsx"
+                               class="btn btn-success mt-2" download="PlanningToolSample">Download and
+                                Try It Out!</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-md card portfolio-card">
+                    <div class="card-top">
+                        <h5 class="hover-text alert portfolio-alert p-3 text-center">Click me for a preview!</h5>
+                        <img src="/static/images/InventoryMaster_Screenshot.png"
+                             class="card-img-top" data-bs-toggle="modal" data-bs-target="#projectModal2"
+                             alt="Inventory Master Preview Static">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="portfolio-title">
+                            Inventory Master List
+                            <span class="badge bg-success portfolio-badge">
+                                Excel
+                            </span>
+                        </h5>
+                        <div class="d-flex justify-content-center d-lg-none">
+                            <button type="button" class="portfolio-button my-2 btn btn-light" data-bs-toggle="collapse"
+                                    data-bs-target="#portfolio-text-2" aria-expanded="false"
+                                    aria-controls="portfolio-text-2">
+                                See Description
+                            </button>
+                        </div>
+                        <div id="portfolio-text-2" class="portfolio-text collapse d-lg-block">
+                            <p class="card-text"> Part of Screenvision Media's Front & Center Everywhere
+                                strategy involved integrating the inventory of other companies into
+                                their own.
+                                <br><br>
+                                This file mimics the one I created to compile the inventory from four
+                                separate companies into a one-sheet. The original inventory files lived
+                                on Sharepoint - in separate
+                                worksheets.
+                                <br><br>
+                                <a href="/static/files/Inventory_Management_Sample.xlsx"
+                                   class="btn btn-success mt-2" download="InventoryMasterSample">Download
+                                    and Try It Out!</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col-md ms-2 card portfolio-card">
+                    <div class="card-top">
+                        <h5 class="hover-text alert portfolio-alert p-3 text-center">Click me for a preview!</h5>
+                        <img src="/static/images/InventoryReport_Screenshot.png"
+                             class="card-img-top" data-bs-toggle="modal" data-bs-target="#projectModal3"
+                             alt="Inventory Report Preview Static">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="portfolio-title">
+                            Inventory Report
+                            <span class="badge bg-success portfolio-badge">
+                                Excel
+                            </span>
+                        </h5>
+                        <div class="d-flex justify-content-center d-lg-none">
+                            <button type="button" class="portfolio-button my-2 btn btn-light" data-bs-toggle="collapse"
+                                    data-bs-target="#portfolio-text-3" aria-expanded="false"
+                                    aria-controls="portfolio-text-3">
+                                See Description
+                            </button>
+                        </div>
+                        <div id="portfolio-text-3" class="portfolio-text collapse d-lg-block">
+                            <p class="card-text"> A worksheet that takes a massive report downloaded
+                                from
+                                the company's database and converts it into an easy-to-read report for
+                                management.
+                                <br>
+                                <br>
+                                This tool can provide information for a single week and up-to 52 weeks
+                                into the future.
+                            </p>
+                            <a href="/static/files/Inventory_Report_Engine.zip"
+                               class="btn btn-success mt-2" download="InventoryReportFiles">Download and
+                                Try It Out!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <!-- Second Row -->
+            <div class="row">
+                <!-- Card 4 -->
+                <div class="col-md ms-2 card portfolio-card">
+                    <div class="card-top">
+                        <h5 class="hover-text alert portfolio-alert p-3 text-center">Click me for a preview!</h5>
+                        <img src="/static/images/TarotReader_Screenshot.png"
+                             class="card-img-top" data-bs-toggle="modal" data-bs-target="#projectModal4"
+                             alt="Tarot Reader Preview Static">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="portfolio-title">
+                            Exclusive Affirmation Generator
+                            <span class="badge bg-warning text-primary portfolio-badge">
+                                Python
+                            </span>
+                        </h5>
+                        <div class="d-flex justify-content-center d-lg-none">
+                            <button type="button" class="portfolio-button my-2 btn btn-light" data-bs-toggle="collapse"
+                                    data-bs-target="#portfolio-text-4" aria-expanded="false"
+                                    aria-controls="portfolio-text-4">
+                                See Description
+                            </button>
+                        </div>
+                        <div id="portfolio-text-4" class="portfolio-text collapse d-lg-block">
+                            <p class="card-text">
+                                I imagined this "exclusive" site where users would need to sign in order
+                                to receive a message. By registering, they would get added to an e-mail newsletter.
+                                The user also has the choice to add their own message into the rotation of possible
+                                affirmations.
+                                <br><br>
+                                I created this to showcase my understanding of:
+                            <ul>
+                                <li>Flask Templates & Jinja</li>
+                                <li>Secure Logins</li>
+                                <li>Database Management with Sql-Alchemy</li>
+                            </ul>
+                            </p>
+                            <a href="{{ url_for('tarot_start') }}" class="btn btn-warning mt-2">
+                                Take Me To It!</a>
+                            <a href="#" class="btn btn-light mt-2">
+                                See The Code On Github</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="col-md ms-2 card portfolio-card">
+                    <div class="card-top">
+                        <h5 class="hover-text alert portfolio-alert p-3 text-center">Click me for a preview!</h5>
+                        <img src="/static/images/RobotTxt_Screenshot.png"
+                             class="card-img-top" data-bs-toggle="modal" data-bs-target="#projectModal5"
+                             alt="Robot Txt Reader Preview Static">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="portfolio-title">
+                            Robots.txt Look-up
+                            <span class="badge bg-warning text-primary portfolio-badge">
+                                Python
+                            </span>
+                        </h5>
+                        <div class="d-flex justify-content-center d-lg-none">
+                            <button type="button" class="portfolio-button my-2 btn btn-light" data-bs-toggle="collapse"
+                                    data-bs-target="#portfolio-text-5" aria-expanded="false"
+                                    aria-controls="portfolio-text-5">
+                                See Description
+                            </button>
+                        </div>
+                        <div id="portfolio-text-5" class="portfolio-text collapse d-lg-block">
+                            <p>
+                                Robots.txt files provide a useful guide for devs looking to safely
+                                web-scrape.
+                                This tool makes finding these files more convenient, <i>before</i> you
+                                run
+                                the web-scraping bot. If nothing else, it may serve as a learning tool.
+                                <br><br>
+                                Once given a valid url, the site will display a "beautified" version of
+                                the
+                                url's robot.txt and a "how-to-read" guide.
+                            </p>
+                            <a href="{{ url_for('show_robots_txt') }}" class="btn btn-warning mt-2">
+                                Take Me To It!</a>
+                            <a href="#" class="btn btn-light mt-2">
+                                See The Code On Github</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 6 -->
+                <div class="col-md ms-2 card portfolio-card">
+                    <div class="card-top">
+                        <h5 class="hover-text alert portfolio-alert p-3 text-center">Click me for a preview!</h5>
+                        <img src="/static/images/BoxOffice_Screenshot.png"
+                             class="card-img-top" data-bs-toggle="modal" data-bs-target="#projectModal6"
+                             alt="BoxOffice Report Preview Static">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="portfolio-title">
+                            Data Science - Box Office vs Streaming
+                            <span class="badge bg-warning text-primary portfolio-badge">
+                                Python
+                            </span>
+                        </h5>
+                        <div class="d-flex justify-content-center d-lg-none">
+                            <button type="button" class="portfolio-button my-2 btn btn-light" data-bs-toggle="collapse"
+                                    data-bs-target="#portfolio-text-6" aria-expanded="false"
+                                    aria-controls="portfolio-text-6">
+                                See Description
+                            </button>
+                        </div>
+                        <div id="portfolio-text-6" class="portfolio-text collapse d-lg-block">
+                            <p class="card-text">
+                                This is my analysis of how Hollywood's day-and-date distribution
+                                strategy
+                                impacted 2021's box-office and the moviegoing audience. This could
+                                either
+                                be an industry data report, internal newsletter, etc.
+                                <br><br>
+                                The charts are made using Plotly. To help with page-loading, I stored
+                                the
+                                charts used in the report in a database.
+                            </p>
+                            <a href="{{ url_for('page_preloader') }}" class="btn btn-warning mt-2">
+                                Take Me To It!</a>
+                            <a href="#" class="btn btn-light mt-2">
+                                See The Code On Github</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modals -->
+        <div class="modal fade" id="projectModal1" tabindex="-1" aria-labelledby="projectModal1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Sales Planning Tool Preview</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body py-4">
+                        <img src="/static/gifs/PlanningTool_Preview.gif" class="card-img-top"
+                             alt="Sales Planning Tool Preview Gif">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="projectModal2" tabindex="-1" aria-labelledby="projectModal2" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Inventory Master List Preview</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body py-4">
+                        <img src="/static/gifs/InventoryMaster_Preview.gif" class="card-img-top"
+                             alt="Inventory Master List Preview">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="projectModal3" tabindex="-1" aria-labelledby="projectModal3" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Inventory Report Preview</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body py-4">
+                        <img src="/static/gifs/InventoryReport_Preview.gif" class="card-img-top"
+                             alt="Inventory Report Preview Gif">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="projectModal4" tabindex="-1" aria-labelledby="projectModal4" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Exclusive Affirmation Generator Preview</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body py-4">
+                        <img src="/static/gifs/Tarot_Card_Preview.gif" class="card-img-top"
+                             alt="Exclusive Affirmation Generator Preview Gif">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="projectModal5" tabindex="-1" aria-labelledby="projectModal5" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Robots.txt Look-Up Preview</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body py-4">
+                        <img src="/static/gifs/RobotsTxtPreview.gif" class="card-img-top"
+                             alt="Robots.Txt Look-Up Preview Gif">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="projectModal6" tabindex="-1" aria-labelledby="projectModal6" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Data Science - Box Office vs Streaming Preview</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body py-4">
+                        <img src="/static/gifs/BoxOfficePreview.gif" class="card-img-top"
+                             alt="Data Science - Box Office vs Streaming Preview Gif">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+</body>
 
 {% endblock %}

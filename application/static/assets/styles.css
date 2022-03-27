@@ -197,6 +197,38 @@ figcaption{
     background-color: rgba(5, 168, 180, 0.8);
 }
 
+.portfolio-alert{
+    opacity:0.8;
+    background-color: #212529;
+}
+
+.portfolio-badge {
+    font-size: 13px;
+    position: absolute;
+    margin-top: 2px;
+}
+
+.portfolio-bg {
+    background-color: #212529;
+}
+
+.portfolio-button {
+}
+
+.portfolio-card {
+    background-color: #212529;
+    max-height: 300px;
+    overflow: hidden;
+}
+
+.portfolio-title {
+    position: relative;
+}
+
+.portfolio-text{
+    color: #a5bbcf;
+}
+
 .pre{
     background: #E7E9EB;
     font-family: monospace;
@@ -303,9 +335,23 @@ a:hover img:first-child {
     display:none;
 }
 
+.hover-excel:hover {
+    color: white;
+    background-color: #198754;
+}
+
+.hover-python:hover {
+    color: #366C9C;
+    background-color: #F7CF44;
+}
+
+.portfolio-card:hover {
+    background-color: #394047;
+    overflow: visible;
+    max-height: 100%;
+}
+
 /* ------- Blinking Cursor ------- */
-
-
 .blinking-cursor {
   font-weight: 100;
   font-size: 26px;
@@ -399,8 +445,14 @@ a:hover img:first-child {
 
     /* Classes */
     .tarot-card{
-    width: 100px;
-    height: 150px;
+        width: 100px;
+        height: 150px;
     }
+
+    .portfolio-card {
+        margin: 3rem 0;
+        overflow: visible;
+    }
+
 }
 
