@@ -328,7 +328,10 @@ def show_robots_txt():
         except requests.exceptions.InvalidURL:
             flash('Valid Urls must start with "https://" or "http://"')
             return redirect(url_for('show_robots_txt'))
-        return render_template('robots_text.html', website=website, robots_txt=robots_txt)
+        return render_template('robots_text.html',
+                               website=website,
+                               robots_txt=robots_txt,
+                               )
 
     return render_template('robots_text.html', form=form)
 

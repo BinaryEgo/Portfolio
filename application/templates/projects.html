@@ -31,11 +31,22 @@
 <!-- Portfolio -->
 <body class="portfolio-bg night-mode">
 <div class="container my-4 py-4">
-    <div class="row">
+    <div class="row mx-auto">
         <!-- Description -->
         <div class="col-md-3 text-md-start text-center">
-            <h5>Header</h5>
-            <p>some description</p>
+            <div class="row">
+                <i class="col-1 fa-solid fa-quote-left"></i>
+                <h5 class="col portfolio-header py-2 text-center"><i>CREATED TO CREATE</i></h5>
+                <i class="col-1 fa-solid fa-quote-right"></i>
+            </div>
+            <p>
+                No matter what I make, I aim for something easy to read, easy to use, and easy to look at.
+                Although this entire site is technically a project of mine, you can check out some more of my recent
+                work here. Unless otherwise stated, I handled both the front-end and the back-end.
+                <br><br>
+                At the moment, I would say that my main programming language is Python, but I am always willing to
+                pick up another language!
+            </p>
         </div>
 
         <!-- Cards -->
@@ -235,7 +246,8 @@
                                 <br><br>
                                 Once given a valid url, the site will display a "beautified" version of
                                 the
-                                url's robot.txt and a "how-to-read" guide.
+                                url's robot.txt and a "how-to-read" guide. Users can also print or save
+                                as pdf.
                             </p>
                             <a href="{{ url_for('show_robots_txt') }}" class="btn btn-warning mt-2">
                                 Take Me To It!</a>

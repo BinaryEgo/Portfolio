@@ -37,6 +37,14 @@ figcaption{
     display: none;
 }
 
+#down-arrow {
+    color: white;
+    position: absolute;
+    top: 90vh;
+    left: 48%;
+    opacity: 0.3;
+}
+
 /* ------- Classes ------- */
 
 .accomplishment{
@@ -209,7 +217,7 @@ figcaption{
 }
 
 .portfolio-bg {
-    background-color: #212529;
+    background-color: #20232A;
 }
 
 .portfolio-button {
@@ -219,6 +227,10 @@ figcaption{
     background-color: #212529;
     max-height: 300px;
     overflow: hidden;
+}
+
+.portfolio-header {
+    letter-spacing: 2px;
 }
 
 .portfolio-title {
@@ -417,6 +429,11 @@ a:hover img:first-child {
         font-size:42px;
     }
 
+    /* ID */
+    #down-arrow{
+        display:none;
+    }
+
     /* Classes */
     .bg-image{
         height:75vh;
@@ -441,6 +458,11 @@ a:hover img:first-child {
 @media (max-width: 600px) {
     h1{
         font-size:36px;
+    }
+
+    /* ID */
+    #down-arrow{
+        display:none;
     }
 
     /* Classes */

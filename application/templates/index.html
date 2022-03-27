@@ -30,6 +30,10 @@
                      alt="picture of Jermy">
             </div>
         </div>
+        <div id="down-arrow" class="text-center">
+            <i class="fa-2x fa-solid fa-circle-arrow-down fa-beat-fade" style="--fa-animation-duration: 2s"></i>
+            <h6 class="night-mode mt-2">scroll down</h6>
+        </div>
     </div>
 </header>
 
@@ -311,7 +315,8 @@
                                                 <br><br>
                                                 Once given a valid url, the site will display a "beautified" version of
                                                 the
-                                                url's robot.txt and a "how-to-read" guide.
+                                                url's robot.txt and a "how-to-read" guide. Users can also print or save
+                                                as pdf.
                                             </p>
                                             <a href="{{ url_for('show_robots_txt') }}" class="btn btn-dark mt-2">
                                                 Take Me To It!</a>

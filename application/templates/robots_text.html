@@ -45,7 +45,21 @@
 {% endif %}
 
 <!---- POST = Show Robots Txt ---->
+
+<!-- Control Print Area -->
 {% if request.method == "POST" %}
+<style type="text/css">
+    @media print
+    {
+        body * { visibility: hidden; }
+        .print-area * { visibility: visible; overflow: visible;}
+        .print-area { position: absolute; top: 40px; left: 30px; }
+        .bg-danger {color: red;}
+        .bg-success {color: green;}
+    }
+</style>
+
+<!-- POST Content -->
 <div class="container-fluid p-4">
     <div class="row">
         <!-- Left Side -->
@@ -91,10 +105,11 @@
         <!-- Right Side -->
         <div class="col-lg-9 mx-auto">
             <div class="container p-3 text-end">
-                <a href="{{ url_for('show_robots_txt')}}" class="btn btn-danger">Go Back</a>
+                <button type="button" onclick="window.print()" class="btn btn-outline-dark">Print</button>
+                <a href="{{ url_for('show_robots_txt')}}" class="btn btn-danger ms-2">Go Back</a>
             </div>
             <div class="scroll-box container">
-                <pre class="container border">
+                <pre class="container border print-area">
                     {{ robots_txt|safe }}
                 </pre>
             </div>
