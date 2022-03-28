@@ -1,7 +1,8 @@
+import os
+
+import dotenv
 from flask import Flask
 from flask_bootstrap import Bootstrap
-import dotenv
-import os
 
 # ---- Keys, Passwords, Etc. ---- #
 
@@ -11,6 +12,7 @@ app_SECRET_KEY = os.getenv("app_SECRET_KEY")
 # ---- App Setup ---- #
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = app_SECRET_KEY
 Bootstrap(app)
 
 from application import routes
