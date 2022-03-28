@@ -1,1 +1,1 @@
-web: gunicorn application.__init__.py run:app --preload
+web: gunicorn application run:app --preload
