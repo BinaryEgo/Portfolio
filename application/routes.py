@@ -385,8 +385,3 @@ def boxoffice_report():
                            get_movie_blurb=get_movie_blurb,
                            )
 # -------- END DATA SCIENCE BOX OFFICE -------- #
-
-
-@app.errorhandler(404)
-def not_found(error):
-    return redirect(url_for("home_page"))

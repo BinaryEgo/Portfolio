@@ -16,3 +16,5 @@ app.config['SECRET_KEY'] = app_SECRET_KEY
 Bootstrap(app)
 
 from application import routes
+
+all_routes = routes
