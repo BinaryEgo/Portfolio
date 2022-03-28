@@ -11,8 +11,6 @@ app_SECRET_KEY = os.getenv("app_SECRET_KEY")
 # ---- App Setup ---- #
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = app_SECRET_KEY
 Bootstrap(app)
-
 
 from application import routes
