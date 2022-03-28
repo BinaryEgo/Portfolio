@@ -46,7 +46,7 @@ tarot_data = soup.find_all('h3')
 tarot_names = [card.get_text().replace(" Meaning", "") for card in tarot_data]
 
 # ---- Get the Pictures for Each Card ---- #
-picture_names = os.listdir("application/static/images/tarot_cards")
+picture_names = os.listdir("./application/static/images/tarot_cards")
 pictures = ['/static/images/tarot_cards/' + picture_names[i] for i in range(len(picture_names))]
 
 # ---- Finalize Deck ---- #
