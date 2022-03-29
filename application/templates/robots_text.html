@@ -8,7 +8,7 @@
 <!---- GET = Request Website From User ---->
 {% if request.method == "GET" %}
 <div style="height:100vh" class="container-fluid row">
-    <form method="post" novalidate class="my-auto col-lg-8 mx-auto" action="{{ url_for('app_routes.show_robots_txt') }}">
+    <form method="post" novalidate class="my-auto col-lg-8 mx-auto" action="{{ url_for('show_robots_txt') }}">
         <!-- Flash Messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% for category, message in messages %}
@@ -106,7 +106,7 @@
         <div class="col-lg-9 mx-auto">
             <div class="container p-3 text-end">
                 <button type="button" onclick="window.print()" class="btn btn-outline-dark">Print</button>
-                <a href="{{ url_for('app_routes.show_robots_txt')}}" class="btn btn-danger ms-2">Go Back</a>
+                <a href="{{ url_for('show_robots_txt')}}" class="btn btn-danger ms-2">Go Back</a>
             </div>
             <div class="scroll-box container">
                 <pre class="container border print-area">

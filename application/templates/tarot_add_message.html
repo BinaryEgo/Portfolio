@@ -34,7 +34,7 @@
                 affirmation - or anything that you feel may lift a stranger's spirits!</p>
 
             <!-- Form -->
-            <form method="POST" class="night-mode mb-4" action="{{ url_for('app_routes.add_message') }}">
+            <form method="POST" class="night-mode mb-4" action="{{ url_for('add_message') }}">
                 <!-- Message -->
                 <div class="container py-2 mb-4">
                 {{ wtf.form_field(form.message, rows=4) }}
@@ -47,7 +47,7 @@
                 </div>
                 <!-- Go Back to Start -->
                 <div class="container py-2">
-                    <a href="{{url_for('app_routes.logout')}}" class="btn btn-light">
+                    <a href="{{url_for('logout')}}" class="btn btn-light">
                         Log Me Out
                     </a>
                 </div>

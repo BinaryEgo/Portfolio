@@ -27,7 +27,7 @@
 
         <!-- Request Form -->
         <div class="night-mode col-lg-6 mx-auto my-4">
-            <form method="POST" action="{{ url_for('app_routes.reset_password_submit', token=request.args.get('token')) }}">
+            <form method="POST" action="{{ url_for('reset_password_submit', token=request.args.get('token')) }}">
                 <!-- Username -->
                 <div class="container py-2">
                     {{ wtf.form_field(form.username) }}
@@ -76,7 +76,7 @@
                 <input type="submit" name="action" value="Reset Password" class="col-4 btn btn-warning my-4">
             </form>
             <!-- Go Back to Start -->
-            <a href="{{url_for('app_routes.tarot_start')}}" class="col-4 btn btn-light my-2">
+            <a href="{{url_for('tarot_start')}}" class="col-4 btn btn-light my-2">
                 Go Back
             </a>
         </div>

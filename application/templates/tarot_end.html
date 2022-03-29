@@ -27,11 +27,11 @@
                 {% endfor %}
             </div>
             <!-- Add a Message -->
-            <a class="col-6 btn btn-warning mt-4" href="{{ url_for('app_routes.add_message') }}">Add Your Own Message</a>
+            <a class="col-6 btn btn-warning mt-4" href="{{ url_for('add_message') }}">Add Your Own Message</a>
             <!-- Go Back to Start -->
-            <a class="col-6 btn btn-outline-warning mt-4" href="{{ url_for('app_routes.logout') }}">Thanks! Log Me Out</a>
+            <a class="col-6 btn btn-outline-warning mt-4" href="{{ url_for('logout') }}">Thanks! Log Me Out</a>
             <!-- Go Back to Jerm's Home -->
-            <a class="col-6 btn btn-outline-info my-4" href="{{ url_for('app_routes.home_page') }}">Exit to Jerm's homepage</a>
+            <a class="col-6 btn btn-outline-info my-4" href="{{ url_for('home_page') }}">Exit to Jerm's homepage</a>
         </div>
     </div>
 </header>

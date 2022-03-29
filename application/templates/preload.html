@@ -7,7 +7,7 @@
 {% block content %}
 <script>
       function navigate() {
-        window.location.href = '{{url_for("app_routes.boxoffice_report") }}';
+        window.location.href = '{{url_for("boxoffice_report") }}';
         }
         fetch('page_preloader').then(navigate);
 </script>

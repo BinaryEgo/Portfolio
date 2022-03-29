@@ -49,7 +49,7 @@
                     Did they want to?
                 </h5>
                 <p class="text-muted">By
-                    <a href="{{ url_for('app_routes.home_page') }}">
+                    <a href="{{ url_for('home_page') }}">
                         Jermy Francisco
                     </a>
                 </p>
@@ -723,7 +723,7 @@
         </h5>
         <p>Input a movie and its release year below to chart the movie's domestic box-office gross
             alongside the search popularity of seeing the movie online vs in-theater at AMC.</p>
-        <form method="post" action="{{ url_for('app_routes.boxoffice_report') }}">
+        <form method="post" action="{{ url_for('boxoffice_report') }}">
             <div class="row align-items-end">
                 <div class="col-7">
                     {{ wtf.form_field(form.movie) }}

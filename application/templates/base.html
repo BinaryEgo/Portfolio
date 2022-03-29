@@ -41,7 +41,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
         <!-- Navbar Brand -->
-        <a class="navbar-brand" href="{{ url_for('app_routes.home_page') }}">Jermy Francisco</a>
+        <a class="navbar-brand" href="{{ url_for('home_page') }}">Jermy Francisco</a>
         <!-- Navbar Menu Button -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,16 +51,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item me-2">
-                    <a class="nav-link" aria-current="page" href="{{ url_for('app_routes.home_page') }}">Home</a>
+                    <a class="nav-link" aria-current="page" href="{{ url_for('home_page') }}">Home</a>
                 </li>
                 <li class="nav-item me-2">
-                    <a class="nav-link" href="{{url_for('app_routes.show_aboutme') }}">About (Me)</a>
+                    <a class="nav-link" href="{{url_for('show_aboutme') }}">About (Me)</a>
                 </li>
                 <li class="nav-item me-2">
-                    <a class="nav-link" href="{{ url_for('app_routes.show_portfolio') }}">Portfolio</a>
+                    <a class="nav-link" href="{{ url_for('show_portfolio') }}">Portfolio</a>
                 </li>
                 <li class="nav-item me-2">
-                    <a class="nav-link" href="{{ url_for('app_routes.show_contact') }}">Contact</a>
+                    <a class="nav-link" href="{{ url_for('show_contact') }}">Contact</a>
                 </li>
             </ul>
             <form class="d-flex">
@@ -124,12 +124,12 @@
             </ul>
             <!-- Navigation (Footer) -->
             <ul class="nav my-4 justify-content-center border-bottom">
-                <li class="nav-item"><a href="{{ url_for('app_routes.home_page') }}" class="nav-link px-2 text-muted">Home</a></li>
-                <li class="nav-item"><a href="{{url_for('app_routes.show_aboutme') }}" class="nav-link px-2 text-muted">About
+                <li class="nav-item"><a href="{{ url_for('home_page') }}" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a href="{{url_for('show_aboutme') }}" class="nav-link px-2 text-muted">About
                     (Me)</a></li>
-                <li class="nav-item"><a href="{{ url_for('app_routes.show_portfolio') }}"
+                <li class="nav-item"><a href="{{ url_for('show_portfolio') }}"
                                         class="nav-link px-2 text-muted">Portfolio</a></li>
-                <li class="nav-item"><a href="{{ url_for('app_routes.show_contact') }}"
+                <li class="nav-item"><a href="{{ url_for('show_contact') }}"
                                         class="nav-link px-2 text-muted">Contact</a></li>
             </ul>
             <!-- Copyright -->
