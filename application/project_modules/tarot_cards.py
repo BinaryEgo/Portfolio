@@ -1,39 +1,7 @@
-import os
 import random
 
 from bs4 import BeautifulSoup
-from flask_login import UserMixin
-from flask_sqlalchemy import SQLAlchemy
 from requests_cache import CachedSession
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import relationship
-
-from application import app
-
-# ---- Database ---- #
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URI", "sqlite:///tarot_user_base.db")
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-
-
-class TarotUser(UserMixin, db.Model):
-    __tablename__ = "tarot_users"
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), unique=True, nullable=False)
-    email = db.Column(db.String(250), unique=True, nullable=False)
-    password = db.Column(db.String(250), nullable=False)
-    messages = relationship("CustomMessages", back_populates="author")
-
-
-class CustomMessages(db.Model):
-    __tablename__ = "tarot_messages"
-    id = db.Column(db.Integer, primary_key=True)
-    message = db.Column(db.String(140), unique=True, nullable=False)
-    author_id = db.Column(db.Integer, ForeignKey('tarot_users.id'))
-    author = relationship("TarotUser", back_populates="messages")
-
-
-db.create_all()
 
 # ---- Get The Names Of The Tarot Cards Online ---- #
 session = CachedSession()
@@ -175,8 +143,11 @@ class MessageGenerator:
 
 
 # ---- Messages ---- #
-custom_message_data = CustomMessages.query.all()
-custom_messages = [row.message for row in custom_message_data]
+def get_custom_messages(table):
+    custom_message_data = table.query.all()
+    custom_messages = [row.message for row in custom_message_data]
+    return custom_messages
+
 
 tarot_messages = [
     "I am in the right place at the right time, doing the right thing. - LOUISE HAY",

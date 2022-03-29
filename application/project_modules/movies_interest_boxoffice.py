@@ -8,11 +8,8 @@ import pandas as pd
 import plotly
 import plotly.graph_objects as go
 import requests
-from flask_sqlalchemy import SQLAlchemy
 from plotly.subplots import make_subplots
 from pytrends.request import TrendReq
-
-from application import app
 
 # -- Variables --#
 WEEKS = 8
@@ -53,23 +50,6 @@ dotenv.load_dotenv("C:/_CODING/Python/portfolio_passcodes.env")
 TMBD_API_KEY = os.getenv("tmdb_api_key")
 TMBD_API = "https://api.themoviedb.org/3/search/movie"
 TMBD_API_IMG = "https://image.tmdb.org/t/p/original/"
-
-# -- My DataBase -- #
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URI", "sqlite:///movies.db")
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-movie_db = SQLAlchemy(app)
-
-
-class Movie(movie_db.Model):
-    __tablename__ = "movie_data"
-    id = movie_db.Column(movie_db.Integer, primary_key=True)
-    name = movie_db.Column(movie_db.String(250), unique=True, nullable=False)
-    chart = movie_db.Column(movie_db.PickleType, nullable=False)
-    dataframe = movie_db.Column(movie_db.PickleType, nullable=False)
-    html_table = movie_db.Column(movie_db.PickleType, nullable=False)
-
-
-movie_db.create_all()
 
 
 # ---- Functions ---- #
@@ -333,13 +313,14 @@ def get_boxoffice_and_trends_figure(dataframe):
     return chart_json
 
 
-def get_chart_from_database(movie):
+def get_chart_from_database(movie, table):
     """
     Returns a plotly chart json for placement in flask jinja
+    :param table: table from database
     :param movie: name of movie
     :return: plotly chart json
     """
-    selected_movie = Movie.query.filter_by(name=movie).first()
+    selected_movie = table.query.filter_by(name=movie).first()
     chart = selected_movie.chart
     return chart
 
