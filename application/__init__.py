@@ -13,7 +13,10 @@ app_SECRET_KEY = os.getenv("app_SECRET_KEY")
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = app_SECRET_KEY
+
 Bootstrap(app)
 
-import application.routes
+from application.routes import app_routes
+
+app.register_blueprint(app_routes)
 

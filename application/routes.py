@@ -3,7 +3,7 @@ from functools import wraps
 
 import requests.exceptions
 import sqlalchemy.exc
-from flask import render_template, request, flash, url_for, redirect, abort
+from flask import render_template, request, flash, url_for, redirect, abort, Blueprint
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -18,9 +18,12 @@ from application.project_modules.tarot_cards import TarotUser, CustomMessages, T
     tarot_messages, custom_messages, db
 
 
+app_routes = Blueprint('app_routes', __name__)
+
+
 # ---- Main Web Pages ---- #
 
-@app.route('/', methods=["GET", "POST"])
+@app_routes.route('/', methods=["GET", "POST"])
 def home_page():
     logout_user()
     contact_form = ContactForm()
@@ -35,19 +38,19 @@ def home_page():
     return render_template('index.html', form=contact_form)
 
 
-@app.route('/about')
+@app_routes.route('/about')
 def show_aboutme():
     logout_user()
     return render_template('aboutme.html')
 
 
-@app.route('/portfolio', methods=["GET", "POST"])
+@app_routes.route('/portfolio', methods=["GET", "POST"])
 def show_portfolio():
     logout_user()
     return render_template('projects.html')
 
 
-@app.route('/contact', methods=["GET", "POST"])
+@app_routes.route('/contact', methods=["GET", "POST"])
 def show_contact():
     logout_user()
     contact_form = ContactForm()
@@ -84,7 +87,7 @@ def load_user(user_id):
 @login_manager.unauthorized_handler
 def unauthorized_callback():
     flash("Sorry, you must login to continue.")
-    return redirect(url_for('tarot_start'))
+    return redirect(url_for('app_routes.tarot_start'))
 
 
 # -- Admin Only Decorator --#
@@ -96,7 +99,7 @@ def admin_only(function):
                 return abort(403)
         except AttributeError:
             flash("Page is locked to Admin only. Please login.")
-            redirect(url_for('tarot_start'))
+            redirect(url_for('app_routes.tarot_start'))
         return function(*args, **kwargs)
 
     return decorated_function
@@ -105,7 +108,7 @@ def admin_only(function):
 # ---- Tarot Web Pages ---- #
 
 # ---- Tarot Start ---- #
-@app.route("/portfolio/tarot-reader/", methods=["GET", "POST"])
+@app_routes.route("/portfolio/tarot-reader/", methods=["GET", "POST"])
 def tarot_start():
     login_form = LoginForm()
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URI", "sqlite:///tarot_user_base.db")
@@ -175,7 +178,7 @@ def tarot_start():
 
 
 # ---- Tarot Second Round ---- #
-@app.route('/portfolio/tarot-reader/next-round/')
+@app_routes.route('/portfolio/tarot-reader/next-round/')
 @login_required
 def next_round():
     first_num = request.args.get('first_num')
@@ -185,7 +188,7 @@ def next_round():
 
 
 # ---- Tarot Last Round ---- #
-@app.route('/portfolio/tarot-reader/last-round/')
+@app_routes.route('/portfolio/tarot-reader/last-round/')
 @login_required
 def last_round():
     first_num = int(request.args.get('first_num'))
@@ -198,7 +201,7 @@ def last_round():
 
 
 # ---- Tarot Display Message ---- #
-@app.route('/portfolio/tarot-reader/your_message/')
+@app_routes.route('/portfolio/tarot-reader/your_message/')
 @login_required
 def tarot_end():
     first_num = int(request.args.get('first_num'))
@@ -215,7 +218,7 @@ def tarot_end():
 
 
 # ---- Tarot Submit a New Message ---- #
-@app.route('/portfolio/tarot-reader/add-your-own-message/', methods=["GET", "POST"])
+@app_routes.route('/portfolio/tarot-reader/add-your-own-message/', methods=["GET", "POST"])
 @login_required
 def add_message():
     add_message_form = AddMessageForm()
@@ -223,17 +226,17 @@ def add_message():
     if request.method == "POST":
         message = request.form['message']
         user = current_user.id
-        link_to_accept = url_for("accept_new_message", message=message, user=user)
+        link_to_accept = url_for("app_routes.accept_new_message", message=message, user=user)
 
         submit_tarot_message(message, user, link_to_accept)
         flash("Thanks For Your Submission! We'll review it!", category='success')
-        return redirect(url_for('add_message'))
+        return redirect(url_for('app_routes.add_message'))
 
     return render_template('tarot_add_message.html', form=add_message_form)
 
 
 # ---- Tarot Accept A New Message ---- #
-@app.route('/portfolio/tarot-reader/message_accepted/')
+@app_routes.route('/portfolio/tarot-reader/message_accepted/')
 @admin_only
 def accept_new_message():
     message = request.args.get('message')
@@ -246,19 +249,19 @@ def accept_new_message():
     db.session.add(new_message)
     db.session.commit()
     flash("Message Accepted", category="success")
-    return redirect(url_for('tarot_start'))
+    return redirect(url_for('app_routes.tarot_start'))
 
 
 # ---- Tarot Logout ---- #
-@app.route('/portfolio/tarot-reader/logout/')
+@app_routes.route('/portfolio/tarot-reader/logout/')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('tarot_start'))
+    return redirect(url_for('app_routes.tarot_start'))
 
 
 # ---- Tarot Reset Password Request ---- #
-@app.route("/portfolio/tarot-reader/reset-password-request/", methods=["GET", "POST"])
+@app_routes.route("/portfolio/tarot-reader/reset-password-request/", methods=["GET", "POST"])
 def reset_password_request():
     email_form = LoginForm()
 
@@ -271,18 +274,18 @@ def reset_password_request():
 
             if TarotUser.query.filter_by(email=email).first() is None:
                 flash("This email is not registered with us. Please make a new account.", category="fail")
-                return redirect(url_for('reset_password_request'))
+                return redirect(url_for('app_routes.reset_password_request'))
 
             else:
                 flash("An e-mail was sent with a link to reset", category="success")
-                send_reset_pw_email(email, request_by, url_for('reset_password_submit', token=token))
-                return redirect(url_for('reset_password_request'))
+                send_reset_pw_email(email, request_by, url_for('app_routes.reset_password_submit', token=token))
+                return redirect(url_for('app_routes.reset_password_request'))
 
     return render_template('tarot_reset_pw_request.html', form=email_form)
 
 
 # ---- Tarot Reset Password Submit ---- #
-@app.route("/portfolio/tarot-reader/reset-password/", methods=["GET", "POST"])
+@app_routes.route("/portfolio/tarot-reader/reset-password/", methods=["GET", "POST"])
 def reset_password_submit():
     reset_password = ResetPasswordForm()
     hashed_username = request.args.get('token')
@@ -291,7 +294,7 @@ def reset_password_submit():
         # ---- Passwords Must Match ---- #
         if request.form['password'] != request.form['confirm_password']:
             flash("'Password' and 'Confirm Password' Must Match")
-            return redirect(url_for('reset_password_submit', token=hashed_username))
+            return redirect(url_for('app_routes.reset_password_submit', token=hashed_username))
 
         # ---- Check if username matches, if so Update Password ---- #
         if check_password_hash(hashed_username, request.form['username']):
@@ -302,12 +305,12 @@ def reset_password_submit():
             db.session.commit()
 
             flash("Password has been successfully changed", "success")
-            return redirect(url_for('tarot_start'))
+            return redirect(url_for('app_routes.tarot_start'))
 
         # ---- If Username Does Not Exist ---- #
         else:
             flash("Username is incorrect. Please refer to the email that was sent to you.")
-            return redirect(url_for('reset_password_submit', token=hashed_username))
+            return redirect(url_for('app_routes.reset_password_submit', token=hashed_username))
 
     return render_template('tarot_reset_pw_submit.html', form=reset_password)
 
@@ -316,7 +319,7 @@ def reset_password_submit():
 
 
 # -------- START ROBOTS.TXT CHECKER -------- #
-@app.route('/portfolio/robots-txt-check/txt-file', methods=["GET", "POST"])
+@app_routes.route('/portfolio/robots-txt-check/txt-file', methods=["GET", "POST"])
 def show_robots_txt():
     logout_user()
     form = EnterWebsiteForm()
@@ -327,7 +330,7 @@ def show_robots_txt():
             robots_txt = create_robots_html(website)
         except requests.exceptions.InvalidURL:
             flash('Valid Urls must start with "https://" or "http://"')
-            return redirect(url_for('show_robots_txt'))
+            return redirect(url_for('app_routes.show_robots_txt'))
         return render_template('robots_text.html',
                                website=website,
                                robots_txt=robots_txt,
@@ -342,13 +345,13 @@ def show_robots_txt():
 # -------- START DATA SCIENCE BOX OFFICE -------- #
 
 # ---- Preloader ---- #
-@app.route('/preload')
+@app_routes.route('/preload')
 def page_preloader():
     return render_template('preload.html')
 
 
 # ---- Main Page --- #
-@app.route('/portfolio/data-science/box-office', methods=["GET", "POST"])
+@app_routes.route('/portfolio/data-science/box-office', methods=["GET", "POST"])
 def boxoffice_report():
     logout_user()
     movie_lookup_form = MovieLookupForm()
@@ -375,7 +378,7 @@ def boxoffice_report():
                                    )
         except (IndexError, TypeError):
             flash(f'Please double check the spelling of the movie and the release year entered, and try again.')
-            return redirect(url_for('boxoffice_report'))
+            return redirect(url_for('app_routes.boxoffice_report'))
 
     return render_template('datascience_boxoffice.html',
                            form=movie_lookup_form,
