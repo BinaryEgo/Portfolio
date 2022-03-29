@@ -1,18 +1,19 @@
-import smtplib
 import os
-import dotenv
+import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from werkzeug.security import generate_password_hash, check_password_hash
 
 # ---- Keys, Passwords, Etc. ---- #
 
-dotenv.load_dotenv("C:/_CODING/Python/portfolio_passcodes.env")
-app_SECRET_KEY = os.getenv("app_SECRET_KEY")
-MY_EMAIL = os.getenv("gmail_1_email")
-PASSWORD = os.getenv("gmail_1_password")
+# dotenv.load_dotenv("C:/_CODING/Python/portfolio_passcodes.env")
+# MY_EMAIL = os.getenv("gmail_1_email")
+# PASSWORD = os.getenv("gmail_1_password")
+#
+# WEBSITE = 'http://127.0.0.1:5000'
 
-WEBSITE = 'http://127.0.0.1:5000'
+MY_EMAIL = os.environ.get("gmail_1_email")
+PASSWORD = os.environ.get("gmail_1_password")
+WEBSITE = 'https://jermy-portfolio.herokuapp.com/'
 
 
 # ---- Contact Form ---- #

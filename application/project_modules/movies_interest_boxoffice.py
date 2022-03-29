@@ -2,7 +2,6 @@ import datetime as dt
 import json
 import os
 
-import dotenv
 import numpy as np
 import pandas as pd
 import plotly
@@ -46,8 +45,10 @@ theaterOnly_movies = [
 ]
 
 # -- Movie API -- #
-dotenv.load_dotenv("C:/_CODING/Python/portfolio_passcodes.env")
-TMBD_API_KEY = os.getenv("tmdb_api_key")
+# dotenv.load_dotenv("C:/_CODING/Python/portfolio_passcodes.env")
+# TMBD_API_KEY = os.getenv("tmdb_api_key")
+
+TMBD_API_KEY = os.environ.get("tmdb_api_key")
 TMBD_API = "https://api.themoviedb.org/3/search/movie"
 TMBD_API_IMG = "https://image.tmdb.org/t/p/original/"
 
