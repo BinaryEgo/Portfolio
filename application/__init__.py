@@ -42,3 +42,7 @@ def show_aboutme():
     logout_user()
     return render_template('aboutme.html')
 
+
+# ---- Tarot Login Manager ---- #
+login_manager = LoginManager()
+login_manager.init_app(app)
