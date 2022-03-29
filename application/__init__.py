@@ -16,8 +16,7 @@ app.config['SECRET_KEY'] = app_SECRET_KEY
 Bootstrap(app)
 
 
-@app.route("/")
-def home():
-    return "Hi"
+from application import routes
+
 
 
