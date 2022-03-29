@@ -28,12 +28,12 @@
         <!-- Request Form -->
         <div class="night-mode col-lg-6 mx-auto my-4">
             <!-- Button to send email -->
-            <form method="POST" action="{{ url_for('reset_password_request') }}">
+            <form method="POST" action="{{ url_for('app_routes.reset_password_request') }}">
                 {{ wtf.form_field(form.email) }}
                 <input type="submit" name="action" value="Send Reset Email" class="col-4 btn btn-warning my-4">
             </form>
             <!-- Button to cancel -->
-            <a href="{{url_for('tarot_start')}}" class="col-4 btn btn-light my-2">
+            <a href="{{url_for('app_routes.tarot_start')}}" class="col-4 btn btn-light my-2">
                 Go Back
             </a>
         </div>

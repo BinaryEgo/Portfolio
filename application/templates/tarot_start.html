@@ -81,7 +81,7 @@
                 <div class="row mx-auto p-3">
                     <input class="col btn btn-warning" type="submit" name="action" value="Sign Me Up!">
                 </div>
-                <a href="{{url_for('tarot_start')}}" class="col-4 btn btn-light my-2">
+                <a href="{{url_for('app_routes.tarot_start')}}" class="col-4 btn btn-light my-2">
                     Go Back
                 </a>
             </form>
@@ -137,7 +137,7 @@
                     </div>
                 </form>
                 <!-- Forgot Password Link -->
-                <a type="submit" class="mb-2" href="{{ url_for('reset_password_request') }}">
+                <a type="submit" class="mb-2" href="{{ url_for('app_routes.reset_password_request') }}">
                     Forgot password? Click here to reset
                 </a>
             </div>
@@ -151,7 +151,7 @@
             {% for card in deal_cards %}
             <div class="col d-flex justify-content-center">
                 <a class="tarot-card fill d-flex align-items-center"
-                   href="{{ url_for('next_round', first_num=card['number']) }}">
+                   href="{{ url_for('app_routes.next_round', first_num=card['number']) }}">
                     <img src="/static/images/bg/shotaro-hamasaki-8FU_MZ2r0EQ-unsplash.jpg" class="fill" alt="...">
                     <img src="{{ card['img'] }}" class="fill" alt="{{ card['name'] }}">
                 </a>
