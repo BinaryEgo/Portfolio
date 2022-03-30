@@ -329,9 +329,9 @@ def get_chart_from_database(movie, table):
 # -- Pre-Fill Database For Article -- #
 
 
-def preFill_database(table, database):
+def preFill_database(table_class, database):
     all_movies = hboMax_movies + disneyPlus_movies + theaterOnly_movies
-    table.query.delete()
+    # table_class.query.delete()
 
     for movie in all_movies:
         name = movie['name']
@@ -343,7 +343,7 @@ def preFill_database(table, database):
         table, dataframe = get_boxoffice_and_trends_table(name, year, alt)
         chart = get_boxoffice_and_trends_figure(dataframe)
 
-        new_movie = table(
+        new_movie = table_class(
             name=name,
             chart=chart,
             dataframe=dataframe,
@@ -352,3 +352,4 @@ def preFill_database(table, database):
         print(name)
         database.session.add(new_movie)
         database.session.commit()
+        time.sleep(60)
