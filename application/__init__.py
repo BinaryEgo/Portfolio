@@ -17,8 +17,7 @@ from application.project_modules.email_manager import send_email, send_reset_pw_
 from application.project_modules.forms import ContactForm, LoginForm, ResetPasswordForm, AddMessageForm, \
     EnterWebsiteForm, MovieLookupForm
 from application.project_modules.movies_interest_boxoffice import get_boxoffice_and_trends_table, \
-    get_boxoffice_and_trends_figure, get_chart_from_database, get_movie_poster, get_movie_blurb, get_movie_date, \
-    preFill_database
+    get_boxoffice_and_trends_figure, get_chart_from_database, get_movie_poster, get_movie_blurb, get_movie_date
 from application.project_modules.robots_checker import get_url_name, create_robots_html
 from application.project_modules.tarot_cards import TarotManager, MessageGenerator, \
     tarot_messages, get_custom_messages
@@ -398,7 +397,6 @@ class Movie(movie_db.Model):
 
 
 movie_db.create_all()
-preFill_database(Movie, movie_db)
 
 
 # ---- Preloader ---- #
