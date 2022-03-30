@@ -328,28 +328,25 @@ def get_chart_from_database(movie, table):
 
 # -- Pre-Fill Database For Article -- #
 
-
-def preFill_database(table_class, database):
-    all_movies = hboMax_movies + disneyPlus_movies + theaterOnly_movies
-    # table_class.query.delete()
-
-    for movie in all_movies:
-        name = movie['name']
-        year = movie['year']
-        if 'alt' in movie:
-            alt = movie['alt']
-        else:
-            alt = "watch online"
-        table, dataframe = get_boxoffice_and_trends_table(name, year, alt)
-        chart = get_boxoffice_and_trends_figure(dataframe)
-
-        new_movie = table_class(
-            name=name,
-            chart=chart,
-            dataframe=dataframe,
-            html_table=table
-        )
-        print(name)
-        database.session.add(new_movie)
-        database.session.commit()
-        time.sleep(60)
+# all_movies = hboMax_movies + disneyPlus_movies + theaterOnly_movies
+# Movie.query.delete()
+#
+# for movie in all_movies:
+#     name = movie['name']
+#     year = movie['year']
+#     if 'alt' in movie:
+#         alt = movie['alt']
+#     else:
+#         alt = "watch online"
+#     table, dataframe = get_boxoffice_and_trends_table(name, year, alt)
+#     chart = get_boxoffice_and_trends_figure(dataframe)
+#
+#     new_movie = Movie(
+#         name=name,
+#         chart=chart,
+#         dataframe=dataframe,
+#         html_table=table
+#     )
+#     print(name)
+#     movie_db.session.add(new_movie)
+#     movie_db.session.commit()
