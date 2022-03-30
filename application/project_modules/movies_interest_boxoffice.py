@@ -1,6 +1,7 @@
 import datetime as dt
 import json
 import os
+import time
 
 import numpy as np
 import pandas as pd
@@ -351,3 +352,4 @@ def preFill_database(table, database):
         print(name)
         database.session.add(new_movie)
         database.session.commit()
+        time.sleep(60)
