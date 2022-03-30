@@ -114,7 +114,7 @@ def admin_only(function):
 
 # ---- Tarot Web Pages ---- #
 # ---- Database ---- #
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///tarot_user_base.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -149,7 +149,7 @@ message_generator = MessageGenerator(messages=tarot_messages, user_messages=get_
 @app.route("/portfolio/tarot-reader/", methods=["GET", "POST"])
 def tarot_start():
     login_form = LoginForm()
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///tarot_user_base.db")
 
     if request.method == "POST":
         # ---- Send Register Form ---- #
@@ -382,7 +382,7 @@ def show_robots_txt():
 
 # -------- START DATA SCIENCE BOX OFFICE -------- #
 # -- My DataBase -- #
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///movies.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 movie_db = SQLAlchemy(app)
 
@@ -410,7 +410,7 @@ def page_preloader():
 def boxoffice_report():
     logout_user()
     movie_lookup_form = MovieLookupForm()
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///movies.db")
 
     # -- Interactive Section -- #
     if request.method == "POST":
