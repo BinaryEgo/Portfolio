@@ -352,4 +352,3 @@ def preFill_database(table, database):
         print(name)
         database.session.add(new_movie)
         database.session.commit()
-        time.sleep(60)
