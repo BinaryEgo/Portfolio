@@ -330,7 +330,7 @@ def get_chart_from_database(movie, table):
 # -- Pre-Fill Database For Article -- #
 def pre_fill_database(tablename, database):
     all_movies = hboMax_movies + disneyPlus_movies + theaterOnly_movies
-    # tablename.query.delete()
+    tablename.query.delete()
 
     for movie in all_movies:
         name = movie['name']
