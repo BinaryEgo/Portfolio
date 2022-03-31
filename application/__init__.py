@@ -81,38 +81,6 @@ def show_contact():
 # -------- PORTFOLIO WEB PAGES -------- #
 
 # -------- START TAROT -------- #
-# ---- Tarot Login Manager ---- #
-login_manager = LoginManager()
-login_manager.init_app(app)
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return TarotUser.query.get(int(user_id))
-
-
-@login_manager.unauthorized_handler
-def unauthorized_callback():
-    flash("Sorry, you must login to continue.")
-    return redirect(url_for('tarot_start'))
-
-
-# -- Admin Only Decorator --#
-def admin_only(function):
-    @wraps(function)
-    def decorated_function(*args, **kwargs):
-        try:
-            if current_user.id != 1:
-                return abort(403)
-        except AttributeError:
-            flash("Page is locked to Admin only. Please login.")
-            redirect(url_for('tarot_start'))
-        return function(*args, **kwargs)
-
-    return decorated_function
-
-
-# ---- Tarot Web Pages ---- #
 # ---- Database ---- #
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URI", "sqlite:///tarot_user_base.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -144,6 +112,35 @@ tarot_manager = TarotManager()
 # ---- Tarot Message Generator ---- #
 message_generator = MessageGenerator(messages=tarot_messages, user_messages=get_custom_messages(CustomMessages))
 
+# ---- Tarot Login Manager ---- #
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return TarotUser.query.get(int(user_id))
+
+
+@login_manager.unauthorized_handler
+def unauthorized_callback():
+    flash("Sorry, you must login to continue.")
+    return redirect(url_for('tarot_start'))
+
+
+# -- Admin Only Decorator --#
+def admin_only(function):
+    @wraps(function)
+    def decorated_function(*args, **kwargs):
+        try:
+            if current_user.id != 1:
+                return abort(403)
+        except AttributeError:
+            flash("Page is locked to Admin only. Please login.")
+            redirect(url_for('tarot_start'))
+        return function(*args, **kwargs)
+
+    return decorated_function
 
 # ---- Tarot Start ---- #
 @app.route("/portfolio/tarot-reader/", methods=["GET", "POST"])
