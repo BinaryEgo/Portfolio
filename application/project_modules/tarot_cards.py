@@ -109,6 +109,10 @@ class TarotManager:
         self.tarot_deck = tarot_deck
 
     def deal_cards(self):
+        """
+        Picks three cards at random from the tarot deck.
+        :return: a list of three cards.
+        """
         # ---- Make a Copy of Deck So It Resets ---- #
         avail_cards = self.tarot_deck.copy()
         selected_cards = []
@@ -130,6 +134,11 @@ class MessageGenerator:
         self.all_messages = self.messages + self.user_messages
 
     def deliver_message(self, total):
+        """
+        Delivers a random message based on the total sum of the selected cards' hidden numbers.
+        :param total: sum of selected cards' hidden numbers.
+        :return: a random string of from list of messages.
+        """
         random.shuffle(self.all_messages)
         possible_messages = self.all_messages[:151]
         if total < 79:
@@ -144,6 +153,11 @@ class MessageGenerator:
 
 # ---- Messages ---- #
 def get_custom_messages(table):
+    """
+    Gets custom messages from the table.
+    :param table: custom message table
+    :return: list of messages
+    """
     custom_message_data = table.query.all()
     custom_messages = [row.message for row in custom_message_data]
     return custom_messages

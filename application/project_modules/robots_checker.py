@@ -3,11 +3,21 @@ from urllib.parse import urlparse
 
 
 def get_url_name(url):
+    """
+    Gets the name of a website, without any paths.
+    :param url: url
+    :return: a string
+    """
     name = urlparse(url).netloc
     return name
 
 
 def get_robots_txt(website):
+    """
+    Gets the robots.txt file from a website as a string
+    :param website: url
+    :return: a string
+    """
     protocol = "https://"
     robots_path = "/robots.txt"
     # -- Add In Missing HTTPS -- #
@@ -23,6 +33,11 @@ def get_robots_txt(website):
 
 
 def create_robots_html(website):
+    """
+    Converts the website's robot.txt string into an HTML with CSS classes.
+    :param website: url
+    :return: html string
+    """
     robot_text = get_robots_txt(website)
     robots_html = ''
     for line in robot_text.splitlines():

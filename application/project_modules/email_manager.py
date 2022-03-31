@@ -18,6 +18,10 @@ WEBSITE = 'https://jermy-portfolio.herokuapp.com'
 
 # ---- Contact Form ---- #
 def send_email(contact_form):
+    """
+    sends a message to my portfolio's dedicated email
+    :param contact_form: contact form object
+    """
     from_email = contact_form.email.data
     subject = contact_form.subject.data
     message = f"{contact_form.message.data}\n\nSent From:\n{contact_form.name.data}\n{contact_form.email.data}"
@@ -35,6 +39,12 @@ def send_email(contact_form):
 
 # ---- Portfolio - Tarot Card Reset Password Email --- #
 def send_reset_pw_email(requester_email, requester_name, link):
+    """
+    Sends a user a form to reset their password via email
+    :param requester_email: email
+    :param requester_name: username
+    :param link: path to reset password form
+    """
     msg = MIMEMultipart('alternative')
     msg['Subject'] = "Reset Password Link - Jermy's Tarot Card Project"
     msg['From'] = MY_EMAIL
@@ -78,6 +88,12 @@ def send_reset_pw_email(requester_email, requester_name, link):
 
 # ---- Portfolio - Submit Tarot Message --- #
 def submit_tarot_message(message, user, link):
+    """
+    Allows a user to submit their own affirmation message for the affirmation generator project
+    :param message: text
+    :param user: username
+    :param link: link to send me an email to accept the new message and add to database
+    """
     msg = MIMEMultipart('alternative')
     msg['Subject'] = "Tarot Card Project - Add A New Message"
     msg['From'] = MY_EMAIL

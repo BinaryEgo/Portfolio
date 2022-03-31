@@ -57,6 +57,11 @@ TMBD_API_IMG = "https://image.tmdb.org/t/p/original/"
 # ---- Functions ---- #
 # -- Get Week Number Friday Start -- #
 def get_week_number(date):
+    """
+    Given a date, returns the week number based on a Friday start
+    :param date: date object
+    :return: date object
+    """
     year_start = dt.date(date.year, 1, 1)
     return (date - year_start).days // 7 + 1
 
@@ -82,6 +87,12 @@ def get_movie_date(film, year):
 
 # -- Get Movie Poster -- #
 def get_movie_poster(film, year):
+    """
+    Gets the poster of a movie from the TMBD API.
+    :param film: movie name
+    :param year: release date
+    :return: an image url
+    """
     film_data = requests.get(TMBD_API, params={'api_key': TMBD_API_KEY,
                                                'query': film,
                                                'page': 1,
@@ -95,6 +106,12 @@ def get_movie_poster(film, year):
 
 # -- Get Movie Blurb -- #
 def get_movie_blurb(film, year):
+    """
+    Gets the summary of a movie from the TMBD API.
+    :param film: movie name
+    :param year: release year
+    :return: a string
+    """
     film_data = requests.get(TMBD_API, params={'api_key': TMBD_API_KEY,
                                                'query': film,
                                                'page': 1,
