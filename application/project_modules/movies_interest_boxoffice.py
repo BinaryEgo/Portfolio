@@ -351,4 +351,4 @@ def pre_fill_database(tablename, database):
         print(name)
         database.session.add(new_movie)
         database.session.commit()
-        time.sleep(60)
+        time.sleep(25)
