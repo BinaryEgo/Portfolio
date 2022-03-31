@@ -13,7 +13,7 @@ from email.mime.text import MIMEText
 
 MY_EMAIL = os.environ.get("gmail_1_email")
 PASSWORD = os.environ.get("gmail_1_password")
-WEBSITE = 'https://jermy-portfolio.herokuapp.com/'
+WEBSITE = 'https://jermy-portfolio.herokuapp.com'
 
 
 # ---- Contact Form ---- #
