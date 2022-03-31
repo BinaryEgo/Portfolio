@@ -17,8 +17,7 @@ from application.project_modules.email_manager import send_email, send_reset_pw_
 from application.project_modules.forms import ContactForm, LoginForm, ResetPasswordForm, AddMessageForm, \
     EnterWebsiteForm, MovieLookupForm
 from application.project_modules.movies_interest_boxoffice import get_boxoffice_and_trends_table, \
-    get_boxoffice_and_trends_figure, get_chart_from_database, get_movie_poster, get_movie_blurb, get_movie_date, \
-    pre_fill_database
+    get_boxoffice_and_trends_figure, get_chart_from_database, get_movie_poster, get_movie_blurb, get_movie_date
 from application.project_modules.robots_checker import get_url_name, create_robots_html
 from application.project_modules.tarot_cards import TarotManager, MessageGenerator, \
     tarot_messages, get_custom_messages
@@ -115,7 +114,7 @@ def admin_only(function):
 
 # ---- Tarot Web Pages ---- #
 # ---- Database ---- #
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL1", "sqlite:///tarot_user_base.db")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///tarot_user_base.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -150,7 +149,7 @@ message_generator = MessageGenerator(messages=tarot_messages, user_messages=get_
 @app.route("/portfolio/tarot-reader/", methods=["GET", "POST"])
 def tarot_start():
     login_form = LoginForm()
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL1", "sqlite:///tarot_user_base.db")
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///tarot_user_base.db")
 
     if request.method == "POST":
         # ---- Send Register Form ---- #
@@ -383,7 +382,7 @@ def show_robots_txt():
 
 # -------- START DATA SCIENCE BOX OFFICE -------- #
 # -- My DataBase -- #
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL1", "sqlite:///movies.db")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///movies.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 movie_db = SQLAlchemy(app)
 
@@ -398,7 +397,6 @@ class Movie(movie_db.Model):
 
 
 movie_db.create_all()
-# pre_fill_database(Movie, movie_db)
 
 
 # ---- Preloader ---- #
@@ -412,7 +410,7 @@ def page_preloader():
 def boxoffice_report():
     logout_user()
     movie_lookup_form = MovieLookupForm()
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL1", "sqlite:///movies.db")
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///movies.db")
 
     # -- Interactive Section -- #
     if request.method == "POST":
