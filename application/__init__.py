@@ -34,9 +34,51 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = app_SECRET_KEY
 Bootstrap(app)
 
+# -------- Databases -------- #
+# ---- Tarot Card ---- #
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL1", "sqlite:///tarot_user_base.db")
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+
+class TarotUser(UserMixin, db.Model):
+    __tablename__ = "tarot_users"
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(40), unique=True, nullable=False)
+    email = db.Column(db.String(250), unique=True, nullable=False)
+    password = db.Column(db.String(250), nullable=False)
+    messages = relationship("CustomMessages", back_populates="author")
+
+
+class CustomMessages(db.Model):
+    __tablename__ = "tarot_messages"
+    id = db.Column(db.Integer, primary_key=True)
+    message = db.Column(db.String(140), unique=True, nullable=False)
+    author_id = db.Column(db.Integer, ForeignKey('tarot_users.id'))
+    author = relationship("TarotUser", back_populates="messages")
+
+
+db.create_all()
+
+# -- Box Office -- #
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL1", "sqlite:///movies.db")
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+movie_db = SQLAlchemy(app)
+
+
+class Movie(movie_db.Model):
+    __tablename__ = "movie_data"
+    id = movie_db.Column(movie_db.Integer, primary_key=True)
+    name = movie_db.Column(movie_db.String(250), unique=True, nullable=False)
+    chart = movie_db.Column(movie_db.PickleType, nullable=False)
+    dataframe = movie_db.Column(movie_db.PickleType, nullable=False)
+    html_table = movie_db.Column(movie_db.PickleType, nullable=False)
+
+
+movie_db.create_all()
+
 
 # ---- Main Web Pages ---- #
-
 @app.route('/', methods=["GET", "POST"])
 def home_page():
     logout_user()
@@ -50,7 +92,9 @@ def home_page():
             return render_template('contact.html', form=contact_form, msg_sent=False)
 
     return render_template('index.html', form=contact_form,
-                           pre_fill_database=pre_fill_database(Movie, movie_db)
+                           pre_fill_database=pre_fill_database,
+                           tablename=Movie,
+                           database=movie_db,
                            )
 
 
@@ -116,34 +160,8 @@ def admin_only(function):
 
 
 # ---- Tarot Web Pages ---- #
-# ---- Database ---- #
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL1", "sqlite:///tarot_user_base.db")
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-
-
-class TarotUser(UserMixin, db.Model):
-    __tablename__ = "tarot_users"
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), unique=True, nullable=False)
-    email = db.Column(db.String(250), unique=True, nullable=False)
-    password = db.Column(db.String(250), nullable=False)
-    messages = relationship("CustomMessages", back_populates="author")
-
-
-class CustomMessages(db.Model):
-    __tablename__ = "tarot_messages"
-    id = db.Column(db.Integer, primary_key=True)
-    message = db.Column(db.String(140), unique=True, nullable=False)
-    author_id = db.Column(db.Integer, ForeignKey('tarot_users.id'))
-    author = relationship("TarotUser", back_populates="messages")
-
-
-db.create_all()
-
 # ---- Tarot Card Manager ---- #
 tarot_manager = TarotManager()
-
 # ---- Tarot Message Generator ---- #
 message_generator = MessageGenerator(messages=tarot_messages, user_messages=get_custom_messages(CustomMessages))
 
@@ -381,25 +399,6 @@ def show_robots_txt():
 
 
 # -------- END ROBOTS.TXT CHECKER -------- #
-
-
-# -------- START DATA SCIENCE BOX OFFICE -------- #
-# -- My DataBase -- #
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL1", "sqlite:///movies.db")
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-movie_db = SQLAlchemy(app)
-
-
-class Movie(movie_db.Model):
-    __tablename__ = "movie_data"
-    id = movie_db.Column(movie_db.Integer, primary_key=True)
-    name = movie_db.Column(movie_db.String(250), unique=True, nullable=False)
-    chart = movie_db.Column(movie_db.PickleType, nullable=False)
-    dataframe = movie_db.Column(movie_db.PickleType, nullable=False)
-    html_table = movie_db.Column(movie_db.PickleType, nullable=False)
-
-
-movie_db.create_all()
 
 
 # ---- Preloader ---- #
