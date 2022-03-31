@@ -49,7 +49,9 @@ def home_page():
         else:
             return render_template('contact.html', form=contact_form, msg_sent=False)
 
-    return render_template('index.html', form=contact_form)
+    return render_template('index.html', form=contact_form,
+                           pre_fill_database=pre_fill_database(Movie, movie_db)
+                           )
 
 
 @app.route('/about')
@@ -398,7 +400,6 @@ class Movie(movie_db.Model):
 
 
 movie_db.create_all()
-pre_fill_database(Movie, movie_db)
 
 
 # ---- Preloader ---- #
