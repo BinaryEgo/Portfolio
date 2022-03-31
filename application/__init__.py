@@ -398,7 +398,7 @@ class Movie(movie_db.Model):
 
 
 movie_db.create_all()
-pre_fill_database(Movie, movie_db)
+# pre_fill_database(Movie, movie_db)
 
 
 # ---- Preloader ---- #
