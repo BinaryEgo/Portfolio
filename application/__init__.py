@@ -2,6 +2,7 @@ import os
 from functools import wraps
 
 import dotenv
+import psycopg2
 import requests.exceptions
 import sqlalchemy.exc
 from flask import Flask
@@ -114,7 +115,10 @@ def admin_only(function):
 
 # ---- Tarot Web Pages ---- #
 # ---- Database ---- #
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL1", "sqlite:///tarot_user_base.db")
+DATABASE_URL = os.environ.get("DATABASE_URL1", "sqlite:///tarot_user_base.db")
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
