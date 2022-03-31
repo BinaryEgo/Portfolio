@@ -306,15 +306,13 @@ def reset_password_request():
     if request.method == "POST":
         if request.form['action'] == "Send Reset Email":
             email = request.form['email']
-            user = TarotUser.query.filter_by(email=email).first()
-            request_by = user.username
-            token = generate_password_hash(request_by)
-
             if TarotUser.query.filter_by(email=email).first() is None:
                 flash("This email is not registered with us. Please make a new account.", category="fail")
                 return redirect(url_for('reset_password_request'))
-
             else:
+                user = TarotUser.query.filter_by(email=email).first()
+                request_by = user.username
+                token = generate_password_hash(request_by)
                 flash("An e-mail was sent with a link to reset", category="success")
                 send_reset_pw_email(email, request_by, url_for('reset_password_submit', token=token))
                 return redirect(url_for('reset_password_request'))
