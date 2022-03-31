@@ -62,7 +62,7 @@ figcaption{
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .bg-image-sub-page {
@@ -70,7 +70,7 @@ figcaption{
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    height: 50vh;
+    min-height: 50vh;
 }
 
 .btn-group-vertical{
@@ -247,7 +247,7 @@ figcaption{
 }
 
 .preload{
-    height:100vh;
+    min-height:100vh;
     display: flex;
     background-color: #181818;
     justify-content: center;
@@ -271,7 +271,7 @@ figcaption{
 
 .tarot-bg{
     background: #181818;
-    height: 112vh
+    min-height: 112vh
 }
 
 .tarot-card{
