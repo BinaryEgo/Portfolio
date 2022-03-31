@@ -2,7 +2,6 @@ import os
 from functools import wraps
 
 import dotenv
-import psycopg2
 import requests.exceptions
 import sqlalchemy.exc
 from flask import Flask
@@ -115,10 +114,7 @@ def admin_only(function):
 
 # ---- Tarot Web Pages ---- #
 # ---- Database ---- #
-DATABASE_URL = os.environ.get("DATABASE_URL1", "sqlite:///tarot_user_base.db")
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URI", "sqlite:///tarot_user_base.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -153,7 +149,7 @@ message_generator = MessageGenerator(messages=tarot_messages, user_messages=get_
 @app.route("/portfolio/tarot-reader/", methods=["GET", "POST"])
 def tarot_start():
     login_form = LoginForm()
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL1", "sqlite:///tarot_user_base.db")
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URI", "sqlite:///tarot_user_base.db")
 
     if request.method == "POST":
         # ---- Send Register Form ---- #
@@ -386,7 +382,7 @@ def show_robots_txt():
 
 # -------- START DATA SCIENCE BOX OFFICE -------- #
 # -- My DataBase -- #
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL1", "sqlite:///movies.db")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URI", "sqlite:///movies.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 movie_db = SQLAlchemy(app)
 
@@ -414,7 +410,7 @@ def page_preloader():
 def boxoffice_report():
     logout_user()
     movie_lookup_form = MovieLookupForm()
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL1", "sqlite:///movies.db")
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URI", "sqlite:///movies.db")
 
     # -- Interactive Section -- #
     if request.method == "POST":
