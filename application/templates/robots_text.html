@@ -7,7 +7,7 @@
 
 <!---- GET = Request Website From User ---->
 {% if request.method == "GET" %}
-<div style="height:100vh" class="container-fluid row">
+<div style="min-height:100vh" class="container-fluid row">
     <form method="post" novalidate class="my-auto col-lg-8 mx-auto" action="{{ url_for('show_robots_txt') }}">
         <!-- Flash Messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
