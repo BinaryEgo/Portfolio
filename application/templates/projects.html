@@ -269,7 +269,7 @@
                     </div>
                     <div class="card-body">
                         <h5 class="portfolio-title">
-                            Data Science - Box Office vs Streaming
+                            Analysis - Box Office vs Streaming
                             <span class="badge bg-warning text-primary portfolio-badge">
                                 Python
                             </span>
@@ -299,6 +299,55 @@
                                target="_blank" rel="noopener noreferrer" class="btn btn-light mt-2">
                                 See The Code On Github</a>
                             </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <!-- Third Row -->
+            <div class="row">
+                <!-- Card 7 -->
+                <div class="col-md-4 ms-2 card portfolio-card">
+                    <div class="card-top">
+                        <h5 class="hover-text alert portfolio-alert p-3 text-center">Click me for a preview!</h5>
+                        <img src="/static/images/chocolateAnalysis_Screenshot.png"
+                             class="card-img-top" data-bs-toggle="modal" data-bs-target="#projectModal7"
+                             alt="Chocolate Tableau Project">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="portfolio-title">
+                            Flavors of Cacao
+                            <span class="badge bg-dark text-info portfolio-badge">
+                                SQL / Tableau
+                            </span>
+                        </h5>
+                        <div class="d-flex justify-content-center d-lg-none">
+                            <button type="button" class="portfolio-button my-2 btn btn-light" data-bs-toggle="collapse"
+                                    data-bs-target="#portfolio-text-7" aria-expanded="false"
+                                    aria-controls="portfolio-text-7">
+                                See Description
+                            </button>
+                        </div>
+                        <div id="portfolio-text-7" class="portfolio-text collapse d-lg-block">
+                            <p class="card-text">
+                                A data visualization I prepared in Tableau for an analysis I did in MySQl.
+                                The data was collected from a Kaggle database with two tables: one for chocolate
+                                companies
+                                and one for chocolate ratings (as seen on
+                                <a href="http://flavorsofcacao.com/chocolate_database.html" class="night-mode">
+                                    flavorsofcacao
+                                </a>).
+                                <br>
+                                <br>
+                                The SQL script I ran is available below!
+                                <br>
+                                <br>
+                                <a href="https://public.tableau.com/app/profile/jermy.francisco/viz/FlavorsofCacao_16493626806640/Dashboard1"
+                                   target="_blank" rel="noopener noreferrer" class="btn btn-dark text-info mt-2">
+                                    Take Me To It!</a>
+                                <a href="/static/files/chocolates_analysis.sql" download="chocolates_script"
+                                   target="_blank" rel="noopener noreferrer" class="btn btn-light mt-2">
+                                    Download SQL Script</a>
                         </div>
                     </div>
                 </div>
@@ -380,12 +429,26 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content bg-secondary">
                     <div class="modal-header">
-                        <h5 class="modal-title">Data Science - Box Office vs Streaming Preview</h5>
+                        <h5 class="modal-title">Analysis - Box Office vs Streaming Preview</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body py-4">
                         <img src="/static/gifs/BoxOfficePreview.gif" class="card-img-top"
-                             alt="Data Science - Box Office vs Streaming Preview Gif">
+                             alt="Analysis- Box Office vs Streaming Preview Gif">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="projectModal7" tabindex="-1" aria-labelledby="projectModal7" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-secondary">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Chocolate Analysis on Tableau Preview</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body py-4">
+                        <img src="/static/gifs/ChocolateAnalysis.gif" class="card-img-top"
+                             alt="Chocolate Analysis Preview Gif">
                     </div>
                 </div>
             </div>
