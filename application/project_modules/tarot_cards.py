@@ -197,7 +197,7 @@ tarot_messages = [
     "I am bold and brave.",
     "I have people who love and inspire me.",
     "What I desire will become a reality.",
-    "I are more than enough.",
+    "I am more than enough.",
     "I attract only the best of things.",
     "I am energized for the entire day.",
     "Failure is just another way to learn how to do something right. - MARIAN WRIGHT EDELMAN",
